@@ -27,15 +27,6 @@ usuarios = cursor.fetchall()
 for usuario in usuarios:
     print(usuario) #Podemos usar print(usuario[1]) para ver solo el campo del nombre y asi con el resto de atributos
 
-#Insertar valore a la base de datos
-
-# cursorInsert = conexion.cursor()
-
-# consulta = "insert into Usuarios(idUsuario,nombreUsuario,clave,nivel) values ('4','Miguel','4444','Operario');"
-# cursorInsert.execute(consulta)
-
-# cursorInsert.commit()
-# cursorInsert.close()
 cursor.commit()
 cursor.close()
 conexion.close()
