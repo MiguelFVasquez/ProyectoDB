@@ -27,7 +27,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>15</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -90,10 +90,10 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(218, 218, 218);
+    <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
-
-
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
 </string>
    </property>
    <property name="text">
@@ -134,8 +134,10 @@ color: rgb(0, 0, 0);
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(227, 227, 227);
+    <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
 </string>
    </property>
    <property name="echoMode">
@@ -177,6 +179,7 @@ color: rgb(0, 0, 0);
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
 border-radius:8px
 </string>
    </property>

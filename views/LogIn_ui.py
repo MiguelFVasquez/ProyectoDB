@@ -17,7 +17,7 @@ class Ui_formLogIn(object):
         self.label_2 = QtWidgets.QLabel(parent=formLogIn)
         self.label_2.setGeometry(QtCore.QRect(140, 90, 201, 21))
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
@@ -38,10 +38,10 @@ class Ui_formLogIn(object):
         font.setBold(True)
         font.setWeight(75)
         self.txtUsuario.setFont(font)
-        self.txtUsuario.setStyleSheet("background-color: rgb(218, 218, 218);\n"
+        self.txtUsuario.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
-"\n"
-"\n"
+"border: 2px solid rgb(0,0,0);\n"
+"border-radius: 4px\n"
 "")
         self.txtUsuario.setText("")
         self.txtUsuario.setMaxLength(32728)
@@ -57,8 +57,10 @@ class Ui_formLogIn(object):
         font.setBold(True)
         font.setWeight(75)
         self.txtPassword.setFont(font)
-        self.txtPassword.setStyleSheet("background-color: rgb(227, 227, 227);\n"
+        self.txtPassword.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
+"border: 2px solid rgb(0,0,0);\n"
+"border-radius: 4px\n"
 "")
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.txtPassword.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -78,6 +80,7 @@ class Ui_formLogIn(object):
         self.btnAcceder.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
         self.btnAcceder.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(37, 99, 175);\n"
+"border: 2px solid rgb(0,0,0);\n"
 "border-radius:8px\n"
 "")
         self.btnAcceder.setObjectName("btnAcceder")
