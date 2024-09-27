@@ -19,16 +19,21 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>140</x>
      <y>90</y>
-     <width>161</width>
+     <width>201</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Inicio de sesión</string>
@@ -46,6 +51,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 0);</string>
+   </property>
    <property name="text">
     <string>Usuario</string>
    </property>
@@ -58,6 +66,9 @@
      <width>91</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Contraseña</string>
@@ -72,9 +83,15 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">border:solid 1px, #cfcccb;
-border-radius:3px
+    <string notr="true">background-color: rgb(218, 218, 218);
+color: rgb(0, 0, 0);
 
 
 </string>
@@ -110,11 +127,15 @@ border-radius:3px
      <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">border:solid 1px #cfcccb;
-border-radius:3px
-
-
+    <string notr="true">background-color: rgb(227, 227, 227);
+color: rgb(0, 0, 0);
 </string>
    </property>
    <property name="echoMode">
@@ -150,6 +171,9 @@ border-radius:3px
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(37, 99, 175);
@@ -181,9 +205,9 @@ border-radius:8px
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>10</y>
-      <width>211</width>
+      <x>140</x>
+      <y>0</y>
+      <width>231</width>
       <height>51</height>
      </rect>
     </property>
