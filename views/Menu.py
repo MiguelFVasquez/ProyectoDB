@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QDialog
 from PyQt6.QtCore import QPropertyAnimation
+from views.registrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
 
 class Menu:
     def __init__(self, login_window):
@@ -13,10 +14,13 @@ class Menu:
     def iniGui(self):
         # Conectar el botón de "LogOut" a la función logout
         self.menu.btnLogOut.clicked.connect(self.logout)
-        self.menu.btnEntidades.clicked.connect(self.mostrarEntidades)
+        self.menu.btnEmpleados.clicked.connect(self.mostrarEntidades)
+        self.menu.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)  # Conecta el botón de crear empleados
 
-    # Función para cerrar el menú de admin y regresar al login
-        # Función para cerrar el menú de admin y regresar al login
+    def abrirVentanaCrearEmpleado(self):
+        self.ventanaRegistrarEmpleado = RegistrarEmpleado()  # Crea una instancia de la ventana de registrar empleado
+        self.ventanaRegistrarEmpleado.show()  # Muestra la ventana
+
     def logout(self):
         # Mostrar mensaje de confirmación usando el método personalizado
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
@@ -30,15 +34,15 @@ class Menu:
         self.message = uic.loadUi("views/messageBox.ui")
         
         # Establecer el título y el mensaje
-        self.message.lblTitulo.setText(title)  # Suponiendo que tienes una QLabel con nombre lblTitle
-        self.message.lblMensaje.setText(message)  # Suponiendo que tienes una QLabel con nombre lblMessage
+        self.message.lblTitulo.setText(title)
+        self.message.lblMensaje.setText(message)
 
         # Conectar botones
         self.message.btnSi.clicked.connect(lambda: self.handleResponse(True))
         self.message.btnNo.clicked.connect(lambda: self.handleResponse(False))
 
         # Mostrar el cuadro de diálogo
-        self.message.exec()  # Mostrar el diálogo de manera modal
+        self.message.exec()
 
     def handleResponse(self, accepted):
         if accepted:
@@ -47,12 +51,10 @@ class Menu:
             self.animation.setDuration(400)  # Duración de 0.4 segundos
             self.animation.setStartValue(1)  # Opacidad inicial
             self.animation.setEndValue(0)  # Opacidad final
-            self.animation.finished.connect(self.close_and_show_login)  # Conectar a la función de cierre
+            self.animation.finished.connect(self.close_and_show_login)
             self.animation.start()  # Iniciar la animación
-        self.message.close()  # Cerrar el cuadro de diálogo
-
+        self.message.close()
 
     def close_and_show_login(self):
         self.menu.close()  # Cerrar el menú de administrador
         self.login_window.show()  # Mostrar nuevamente la ventana de LogIn
-

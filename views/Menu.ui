@@ -53,12 +53,12 @@ border-radius: 8px;  </string>
      <string>Cerrar sesión</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnEntidades">
+   <widget class="QPushButton" name="btnEmpleados">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>140</y>
-      <width>101</width>
+      <y>180</y>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -85,8 +85,8 @@ border-radius: 8px;  </string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>200</y>
-      <width>101</width>
+      <y>230</y>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -400,9 +400,9 @@ background-color: rgba(0, 0, 0, 0);
         <colorrole role="PlaceholderText">
          <brush brushstyle="NoBrush">
           <color alpha="128">
-           <red>120</red>
-           <green>120</green>
-           <blue>120</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
@@ -561,6 +561,34 @@ background-color: rgba(0, 0, 0, 0);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="btnCrearEmpleados">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>130</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Crear empleados</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionEmpleados">
    <property name="text">
@@ -577,10 +605,7 @@ background-color: rgba(0, 0, 0, 0);</string>
     <string>Empleados</string>
    </property>
    <property name="font">
-    <font>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
+    <font/>
    </property>
   </action>
   <action name="actionEntidadeSucursales">

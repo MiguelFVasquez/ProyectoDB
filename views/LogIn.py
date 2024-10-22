@@ -5,7 +5,7 @@ from conexion import Conexion  # Importa la clase de conexión
 
 class LogIn:
     def __init__(self):
-        self.login = uic.loadUi("views/LogIn.ui")
+        self.login = uic.loadUi("views/LogIn.ui") 
         self.initGUI()
         self.login.lblMensajeError.setText("")
         self.login.show()
@@ -48,10 +48,9 @@ class LogIn:
         if conexion:
             try:
                 cursor = conexion.cursor()
-                query = "SELECT * FROM Usuarios WHERE cedula = ? AND clave = ?"
+                query = "SELECT * FROM Empleados WHERE cedula = ? AND clave = ?"
                 cursor.execute(query, (usuario, password))
                 result = cursor.fetchone()
-
                 cursor.close()
                 self.db.close()
 
