@@ -36,33 +36,42 @@ class LogIn:
                 self.mostrar_menu_admin()
             else:
                 # Validar usuario desde la base de datos
-                cargo = self.validar_usuario_db(usuario, password)
-                if cargo:
+                resultado = self.validar_usuario_db(usuario, password)
+                if resultado:
                     self.login.lblMensajeError.setText("")
                     self.login.txtUsuario.clear()
                     self.login.txtPassword.clear()
+                    cargo = resultado["cargo"]
                     if cargo == "Tesorero":
                         self.mostrar_menu_tesoreria()
                     else:
                         self.mostrar_menu_usuario()
                 else:
                     self.login.lblMensajeError.setText("Credenciales incorrectas")
-    
+
     # Función para validar usuarios en la base de datos usando la clase DatabaseConnection
     def validar_usuario_db(self, usuario, password):
         conexion = self.db.connect()  # Conectar a la base de datos
         if conexion:
             try:
                 cursor = conexion.cursor()
-                query = "SELECT cargo FROM Empleados WHERE cedula = ? AND clave = ?"
+                query = """
+                SELECT E.idCargo, C.NombreCargo 
+                FROM Empleados E
+                JOIN Cargo C ON E.idCargo = C.idCargo
+                WHERE E.cedula = ? AND E.clave = ?
+                """
                 cursor.execute(query, (usuario, password))
                 result = cursor.fetchone()
                 cursor.close()
                 self.db.close()
 
                 if result:
-                    # Devuelve el cargo del usuario si existe
-                    return result[0]
+                    # Devuelve un diccionario con el idCargo y NombreCargo
+                    return {
+                        "idCargo": result[0],
+                        "cargo": result[1]
+                    }
                 return False
 
             except Exception as e:
