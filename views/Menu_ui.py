@@ -182,6 +182,17 @@ class Ui_menuWindow(object):
 "background-color: rgb(202, 253, 255);\n"
 "border: 2px solid rgb(0, 0, 0);  \n"
 "border-radius: 8px;  ")
+        self.btnCrearSucursales = QPushButton(self.centralwidget)
+        self.btnCrearSucursales.setObjectName(u"btnCrearSucursales")
+        self.btnCrearSucursales.setGeometry(QRect(220, 190, 101, 41))
+        self.btnCrearSucursales.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btnCrearSucursales.setFocusPolicy(Qt.ClickFocus)
+        self.btnCrearSucursales.setLayoutDirection(Qt.RightToLeft)
+        self.btnCrearSucursales.setAutoFillBackground(False)
+        self.btnCrearSucursales.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(202, 253, 255);\n"
+"border: 2px solid rgb(0, 0, 0);  \n"
+"border-radius: 8px;  ")
         menuWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(menuWindow)
@@ -205,5 +216,6 @@ class Ui_menuWindow(object):
         self.lblInformacion.setText(QCoreApplication.translate("menuWindow", u"Informacion", None))
         self.lblMenu.setText(QCoreApplication.translate("menuWindow", u"MENU", None))
         self.btnCrearEmpleados.setText(QCoreApplication.translate("menuWindow", u"Crear usuarios", None))
+        self.btnCrearSucursales.setText(QCoreApplication.translate("menuWindow", u"Crear Sucursal", None))
     # retranslateUi
 

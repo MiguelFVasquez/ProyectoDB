@@ -513,6 +513,37 @@ border-radius: 8px;  </string>
      <string>Crear usuarios</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnCrearSucursales">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>190</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Crear Sucursal</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionEmpleados">
    <property name="text">

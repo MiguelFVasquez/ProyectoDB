@@ -1,7 +1,8 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QDialog
 from PyQt6.QtCore import QPropertyAnimation
-from viewsControl.registrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
+from viewsControl.RegistrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
+from viewsControl.RegistrarSucursal import RegistrarSucursal
 
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
@@ -16,11 +17,16 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.btnLogOut.clicked.connect(self.logout)
         self.btnEmpleados.clicked.connect(self.mostrarEntidades)
         self.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)  # Conecta el botón de crear empleados
+        self.btnCrearSucursales.clicked.connect(self.abriVentanaCrearSucursal)
 
     def abrirVentanaCrearEmpleado(self):
         # Crea una instancia de la ventana de registrar empleado y la muestra
         self.ventanaRegistrarEmpleado = RegistrarEmpleado(self)  # Pasa 'self' como referencia del menú
         self.ventanaRegistrarEmpleado.show()  # Muestra la ventana de RegistrarEmpleado
+
+    def abriVentanaCrearSucursal(self):
+        self.ventanaRegistrarSucursal = RegistrarSucursal(self)
+        self.ventanaRegistrarSucursal.show()
 
     def logout(self):
         # Mostrar mensaje de confirmación usando el método personalizado
