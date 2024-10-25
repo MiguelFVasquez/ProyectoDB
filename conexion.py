@@ -2,11 +2,15 @@ import pyodbc
 
 class Conexion:
     def __init__(self):
-        self.server = 'DARKDEV\SQLEXPRESS'
+        self.server = 'DESKTOP-ICU1JM4\\SQLEXPRESS'
         self.bd = 'db_data'
-        self.username = 'sa'
-        self.password = 'camilo'
+        self.username = 'juan'
+        self.password = 'juanmiguel'
         self.conexion = None
+        #self.server = 'DARKDEV\SQLEXPRESS'
+        #self.bd = 'db_data'
+        #self.username = 'sa'
+        #self.password = 'camilo'
 
     def connect(self):
         try:

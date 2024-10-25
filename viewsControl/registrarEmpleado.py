@@ -30,7 +30,7 @@ class RegistrarEmpleado(QMainWindow):
             try:
                 cursor = conexion.cursor()
                 # Consulta para obtener las sucursales
-                cursor.execute("SELECT idSucursal, NombreSucursal FROM Sucursales")
+                cursor.execute("SELECT idSucursal, NombreSucursal FROM Sucursal")
                 sucursales = cursor.fetchall()
 
                 # Limpiar el ComboBox antes de llenarlo

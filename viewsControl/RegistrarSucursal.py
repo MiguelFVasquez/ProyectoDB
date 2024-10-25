@@ -43,7 +43,7 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
 
                 # Consulta SQL para insertar la sucursal
                 query = """
-                    INSERT INTO Sucursales (NombreSucursal, Direccion, Municipio, Departamento)
+                    INSERT INTO Sucursal (NombreSucursal, Direccion, Municipio, Departamento)
                     VALUES (?, ?, ?, ?)
                 """
                 cursor.execute(query, (NombreSucursal, Direccion, Municipio, Departamento))
