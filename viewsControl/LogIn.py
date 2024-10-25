@@ -1,7 +1,9 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox
-from views.Menu import Menu
-from conexion import Conexion  # Importa la clase de conexión
+from viewsControl.Menu import Menu
+from viewsControl.MenuUsuarios import MenuUsuarios
+from viewsControl.MenuTesoreria import MenuTesoreria 
+from conexion import Conexion
 
 class LogIn:
     def __init__(self):
@@ -34,11 +36,15 @@ class LogIn:
                 self.mostrar_menu_admin()
             else:
                 # Validar usuario desde la base de datos
-                if self.validar_usuario_db(usuario, password):
+                cargo = self.validar_usuario_db(usuario, password)
+                if cargo:
                     self.login.lblMensajeError.setText("")
                     self.login.txtUsuario.clear()
                     self.login.txtPassword.clear()
-                    self.mostrar_menu_usuario()
+                    if cargo == "Tesorero":
+                        self.mostrar_menu_tesoreria()
+                    else:
+                        self.mostrar_menu_usuario()
                 else:
                     self.login.lblMensajeError.setText("Credenciales incorrectas")
     
@@ -48,14 +54,15 @@ class LogIn:
         if conexion:
             try:
                 cursor = conexion.cursor()
-                query = "SELECT * FROM Empleados WHERE cedula = ? AND clave = ?"
+                query = "SELECT cargo FROM Empleados WHERE cedula = ? AND clave = ?"
                 cursor.execute(query, (usuario, password))
                 result = cursor.fetchone()
                 cursor.close()
                 self.db.close()
 
                 if result:
-                    return True
+                    # Devuelve el cargo del usuario si existe
+                    return result[0]
                 return False
 
             except Exception as e:
@@ -70,4 +77,8 @@ class LogIn:
 
     def mostrar_menu_usuario(self):
         self.login.close()  # Cerrar ventana de login
-        self.menu_admin = Menu(self.login)
+        self.menu_Usuarios = MenuUsuarios(self.login)
+
+    def mostrar_menu_tesoreria(self):
+        self.login.close()  # Cerrar ventana de login
+        self.menu_Tesoreria = MenuTesoreria(self.login)

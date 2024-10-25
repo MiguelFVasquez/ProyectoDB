@@ -29,7 +29,7 @@ class Ui_registrarEmpleados(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(0, 0, 561, 80))
+        self.frame.setGeometry(QRect(0, 0, 561, 71))
         font = QFont()
         font.setPointSize(5)
         self.frame.setFont(font)
@@ -79,7 +79,7 @@ class Ui_registrarEmpleados(object):
         self.txtContrasenia.setReadOnly(False)
         self.btnCrearEmpleado = QPushButton(self.centralwidget)
         self.btnCrearEmpleado.setObjectName(u"btnCrearEmpleado")
-        self.btnCrearEmpleado.setGeometry(QRect(360, 280, 93, 28))
+        self.btnCrearEmpleado.setGeometry(QRect(280, 280, 93, 28))
         self.btnCrearEmpleado.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(37, 99, 175);\n"
 "border: 2px solid rgb(0,0,0);\n"
@@ -126,6 +126,14 @@ class Ui_registrarEmpleados(object):
         self.lblCargo.setGeometry(QRect(320, 190, 91, 20))
         self.lblCargo.setFont(font3)
         self.lblCargo.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.btnRegresar = QPushButton(self.centralwidget)
+        self.btnRegresar.setObjectName(u"btnRegresar")
+        self.btnRegresar.setGeometry(QRect(380, 280, 93, 28))
+        self.btnRegresar.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(37, 99, 175);\n"
+"border: 2px solid rgb(0,0,0);\n"
+"border-radius:8px\n"
+"")
         registrarEmpleados.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(registrarEmpleados)
@@ -144,5 +152,6 @@ class Ui_registrarEmpleados(object):
         self.lblContrasenia.setText(QCoreApplication.translate("registrarEmpleados", u"Contrase\u00f1a", None))
         self.lblNombre.setText(QCoreApplication.translate("registrarEmpleados", u"Nombre", None))
         self.lblCargo.setText(QCoreApplication.translate("registrarEmpleados", u"Cargo", None))
+        self.btnRegresar.setText(QCoreApplication.translate("registrarEmpleados", u"Regresar", None))
     # retranslateUi
 

@@ -1,230 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>menuWindow</class>
- <widget class="QMainWindow" name="menuWindow">
+ <class>menuTesoreria</class>
+ <widget class="QMainWindow" name="menuTesoreria">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
-    <height>317</height>
+    <width>555</width>
+    <height>298</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>Menu</string>
-  </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
+   <string>MenuTesoreria</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
-  <property name="animated">
-   <bool>true</bool>
-  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnLogOut">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>270</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(37, 99, 175);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Cerrar sesión</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnEmpleados">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>190</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Ver usuarios</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblEntidades">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>80</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgba(0, 0, 0, 0);
-</string>
-    </property>
-    <property name="text">
-     <string>Usuario</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnPrestamos">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>140</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Ver Auditorias
- de Acceso</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblTransacciones">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>80</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgba(0, 0, 0, 0);
-</string>
-    </property>
-    <property name="text">
-     <string>Transacciones</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnReportes">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>140</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Resportes</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblInformacion">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>80</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgba(0, 0, 0, 0);
-</string>
-    </property>
-    <property name="text">
-     <string>Informacion</string>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
@@ -258,7 +50,7 @@ background-color: rgba(0, 0, 0, 0);
      </property>
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>250</x>
        <y>10</y>
        <width>81</width>
        <height>41</height>
@@ -485,12 +277,12 @@ background-color: rgba(0, 0, 0, 0);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btnCrearEmpleados">
+   <widget class="QPushButton" name="btnVerSolicitudes_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>140</y>
-      <width>111</width>
+      <x>150</x>
+      <y>120</y>
+      <width>101</width>
       <height>41</height>
      </rect>
     </property>
@@ -499,6 +291,9 @@ background-color: rgba(0, 0, 0, 0);</string>
     </property>
     <property name="focusPolicy">
      <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -510,33 +305,157 @@ border: 2px solid rgb(0, 0, 0);
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Crear usuarios</string>
+     <string>Ver Solicitudes 
+Prestamos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnGestionarSolicitudes">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>180</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Gestionar solicitudes 
+ de Prestamo</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTransacciones">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>70</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgba(0, 0, 0, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>Transacciones</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnVerSolicitudes">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>120</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Ver prestamos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReportes">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>180</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Generar
+Resportes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLogOut">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>260</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Cerrar sesión</string>
     </property>
    </widget>
   </widget>
-  <action name="actionEmpleados">
-   <property name="text">
-    <string>Empleados</string>
-   </property>
-  </action>
-  <action name="actionTesoreria">
-   <property name="text">
-    <string>Sucursales</string>
-   </property>
-  </action>
-  <action name="actionEntidadessEmpleado">
-   <property name="text">
-    <string>Empleados</string>
-   </property>
-   <property name="font">
-    <font/>
-   </property>
-  </action>
-  <action name="actionEntidadeSucursales">
-   <property name="text">
-    <string>Sucursales</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

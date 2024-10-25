@@ -23,7 +23,7 @@ class Ui_menuWindow(object):
     def setupUi(self, menuWindow):
         if not menuWindow.objectName():
             menuWindow.setObjectName(u"menuWindow")
-        menuWindow.resize(559, 317)
+        menuWindow.resize(561, 317)
         font = QFont()
         font.setPointSize(10)
         menuWindow.setFont(font)
@@ -53,7 +53,7 @@ class Ui_menuWindow(object):
 "border-radius: 8px;  ")
         self.btnEmpleados = QPushButton(self.centralwidget)
         self.btnEmpleados.setObjectName(u"btnEmpleados")
-        self.btnEmpleados.setGeometry(QRect(40, 180, 111, 41))
+        self.btnEmpleados.setGeometry(QRect(40, 190, 111, 41))
         self.btnEmpleados.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btnEmpleados.setFocusPolicy(Qt.ClickFocus)
         self.btnEmpleados.setAutoFillBackground(False)
@@ -61,34 +61,16 @@ class Ui_menuWindow(object):
 "background-color: rgb(202, 253, 255);\n"
 "border: 2px solid rgb(0, 0, 0);  \n"
 "border-radius: 8px;  ")
-        self.btnSucursales = QPushButton(self.centralwidget)
-        self.btnSucursales.setObjectName(u"btnSucursales")
-        self.btnSucursales.setGeometry(QRect(40, 230, 111, 41))
-        self.btnSucursales.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btnSucursales.setFocusPolicy(Qt.ClickFocus)
-        self.btnSucursales.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"background-color: rgb(202, 253, 255);\n"
-"border: 2px solid rgb(0, 0, 0);  \n"
-"border-radius: 8px;  ")
         self.lblEntidades = QLabel(self.centralwidget)
         self.lblEntidades.setObjectName(u"lblEntidades")
         self.lblEntidades.setEnabled(False)
-        self.lblEntidades.setGeometry(QRect(50, 80, 101, 41))
+        self.lblEntidades.setGeometry(QRect(60, 80, 81, 41))
         font2 = QFont()
         font2.setPointSize(13)
         self.lblEntidades.setFont(font2)
         self.lblEntidades.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgba(0, 0, 0, 0);\n"
 "")
-        self.btnCuotas = QPushButton(self.centralwidget)
-        self.btnCuotas.setObjectName(u"btnCuotas")
-        self.btnCuotas.setGeometry(QRect(220, 200, 101, 41))
-        self.btnCuotas.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btnCuotas.setFocusPolicy(Qt.ClickFocus)
-        self.btnCuotas.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"background-color: rgb(202, 253, 255);\n"
-"border: 2px solid rgb(0, 0, 0);  \n"
-"border-radius: 8px;  ")
         self.btnPrestamos = QPushButton(self.centralwidget)
         self.btnPrestamos.setObjectName(u"btnPrestamos")
         self.btnPrestamos.setGeometry(QRect(220, 140, 101, 41))
@@ -103,20 +85,11 @@ class Ui_menuWindow(object):
         self.lblTransacciones = QLabel(self.centralwidget)
         self.lblTransacciones.setObjectName(u"lblTransacciones")
         self.lblTransacciones.setEnabled(False)
-        self.lblTransacciones.setGeometry(QRect(210, 80, 151, 41))
+        self.lblTransacciones.setGeometry(QRect(210, 80, 141, 41))
         self.lblTransacciones.setFont(font2)
         self.lblTransacciones.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgba(0, 0, 0, 0);\n"
 "")
-        self.btnConsultas = QPushButton(self.centralwidget)
-        self.btnConsultas.setObjectName(u"btnConsultas")
-        self.btnConsultas.setGeometry(QRect(390, 200, 101, 41))
-        self.btnConsultas.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btnConsultas.setFocusPolicy(Qt.ClickFocus)
-        self.btnConsultas.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"background-color: rgb(202, 253, 255);\n"
-"border: 2px solid rgb(0, 0, 0);  \n"
-"border-radius: 8px;  ")
         self.btnReportes = QPushButton(self.centralwidget)
         self.btnReportes.setObjectName(u"btnReportes")
         self.btnReportes.setGeometry(QRect(390, 140, 101, 41))
@@ -201,7 +174,7 @@ class Ui_menuWindow(object):
 "background-color: rgba(0, 0, 0, 0);")
         self.btnCrearEmpleados = QPushButton(self.centralwidget)
         self.btnCrearEmpleados.setObjectName(u"btnCrearEmpleados")
-        self.btnCrearEmpleados.setGeometry(QRect(40, 130, 111, 41))
+        self.btnCrearEmpleados.setGeometry(QRect(40, 140, 111, 41))
         self.btnCrearEmpleados.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btnCrearEmpleados.setFocusPolicy(Qt.ClickFocus)
         self.btnCrearEmpleados.setAutoFillBackground(False)
@@ -223,18 +196,14 @@ class Ui_menuWindow(object):
         self.actionEntidadessEmpleado.setText(QCoreApplication.translate("menuWindow", u"Empleados", None))
         self.actionEntidadeSucursales.setText(QCoreApplication.translate("menuWindow", u"Sucursales", None))
         self.btnLogOut.setText(QCoreApplication.translate("menuWindow", u"Cerrar sesi\u00f3n", None))
-        self.btnEmpleados.setText(QCoreApplication.translate("menuWindow", u"Empleados", None))
-        self.btnSucursales.setText(QCoreApplication.translate("menuWindow", u"Sucursales", None))
-        self.lblEntidades.setText(QCoreApplication.translate("menuWindow", u"Entidades", None))
-        self.btnCuotas.setText(QCoreApplication.translate("menuWindow", u"Gestion de\n"
-"Cuotas", None))
-        self.btnPrestamos.setText(QCoreApplication.translate("menuWindow", u"Solicitar \n"
-"Prestamos", None))
+        self.btnEmpleados.setText(QCoreApplication.translate("menuWindow", u"Ver usuarios", None))
+        self.lblEntidades.setText(QCoreApplication.translate("menuWindow", u"Usuario", None))
+        self.btnPrestamos.setText(QCoreApplication.translate("menuWindow", u"Ver Auditorias\n"
+" de Acceso", None))
         self.lblTransacciones.setText(QCoreApplication.translate("menuWindow", u"Transacciones", None))
-        self.btnConsultas.setText(QCoreApplication.translate("menuWindow", u"Consultas", None))
         self.btnReportes.setText(QCoreApplication.translate("menuWindow", u"Resportes", None))
         self.lblInformacion.setText(QCoreApplication.translate("menuWindow", u"Informacion", None))
         self.lblMenu.setText(QCoreApplication.translate("menuWindow", u"MENU", None))
-        self.btnCrearEmpleados.setText(QCoreApplication.translate("menuWindow", u"Crear empleados", None))
+        self.btnCrearEmpleados.setText(QCoreApplication.translate("menuWindow", u"Crear usuarios", None))
     # retranslateUi
 

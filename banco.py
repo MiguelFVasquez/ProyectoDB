@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication
 
-from views.LogIn import LogIn
+from viewsControl.LogIn import LogIn
 
 class Banco:
     def __init__(self):#Constructor

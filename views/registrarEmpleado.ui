@@ -23,7 +23,7 @@
       <x>0</x>
       <y>0</y>
       <width>561</width>
-      <height>80</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -151,7 +151,7 @@ border-radius: 4px
    <widget class="QPushButton" name="btnCrearEmpleado">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>280</x>
       <y>280</y>
       <width>93</width>
       <height>28</height>
@@ -300,6 +300,26 @@ border-radius: 4px
     </property>
     <property name="text">
      <string>Cargo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRegresar">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>280</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Regresar</string>
     </property>
    </widget>
   </widget>

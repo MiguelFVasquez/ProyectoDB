@@ -1,32 +1,22 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QDialog
 from PyQt6.QtCore import QPropertyAnimation
-from views.registrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
 
-class Menu:
+class MenuTesoreria:
     def __init__(self, login_window):
-        self.menu = uic.loadUi("views/Menu.ui")
+        self.menuTesoreria = uic.loadUi("views/MenuTesoreria.ui")
         self.message = uic.loadUi("views/messageBox.ui")
-        self.login_window = login_window  # Referencia a la ventana de LogIn
+        self.login_window = login_window  
         self.iniGui()
-        self.menu.show()
+        self.menuTesoreria.show()
 
     def iniGui(self):
         # Conectar el botón de "LogOut" a la función logout
-        self.menu.btnLogOut.clicked.connect(self.logout)
-        self.menu.btnEmpleados.clicked.connect(self.mostrarEntidades)
-        self.menu.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)  # Conecta el botón de crear empleados
-
-    def abrirVentanaCrearEmpleado(self):
-        self.ventanaRegistrarEmpleado = RegistrarEmpleado()  # Crea una instancia de la ventana de registrar empleado
-        self.ventanaRegistrarEmpleado.show()  # Muestra la ventana
+        self.menuTesoreria.btnLogOut.clicked.connect(self.logout)
 
     def logout(self):
         # Mostrar mensaje de confirmación usando el método personalizado
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
-
-    def mostrarEntidades(self):
-        QMessageBox.information(self.menu, "Información", "Estamos trabajando en ello")
 
     def mensajeConfirmacion(self, title, message):
         # Cargar la interfaz de messageBox.ui
@@ -47,7 +37,7 @@ class Menu:
     def handleResponse(self, accepted):
         if accepted:
             # Crear animación para desvanecer la ventana
-            self.animation = QPropertyAnimation(self.menu, b"windowOpacity")
+            self.animation = QPropertyAnimation(self.menuTesoreria, b"windowOpacity")
             self.animation.setDuration(400)  # Duración de 0.4 segundos
             self.animation.setStartValue(1)  # Opacidad inicial
             self.animation.setEndValue(0)  # Opacidad final
@@ -56,5 +46,5 @@ class Menu:
         self.message.close()
 
     def close_and_show_login(self):
-        self.menu.close()  # Cerrar el menú de administrador
+        self.menuTesoreria.close()  # Cerrar el menú de administrador
         self.login_window.show()  # Mostrar nuevamente la ventana de LogIn
