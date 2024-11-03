@@ -30,7 +30,7 @@ class RegistrarEmpleado(QMainWindow):
             try:
                 cursor = conexion.cursor()
                 # Consulta para obtener las sucursales
-                cursor.execute("SELECT idSucursal, NombreSucursal FROM Sucursal")
+                cursor.execute("SELECT idSucursal, NombreSucursal FROM Sucursales")
                 sucursales = cursor.fetchall()
 
                 # Limpiar el ComboBox antes de llenarlo
@@ -39,8 +39,10 @@ class RegistrarEmpleado(QMainWindow):
                 # Llenar el ComboBox con los nombres de las sucursales y sus ids
                 for id_sucursal, nombre in sucursales:
                     self.comboBoxSucursal.addItem(nombre, id_sucursal)  # Almacenar id en el segundo parámetro
-
                 cursor.close()
+
+                self.comboBoxSucursal.setCurrentIndex(-1)
+
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Error al cargar las sucursales: {str(e)}")
                 print(f"Error al cargar las sucursales: {str(e)}")  # Asegúrate de que se imprima el error
@@ -55,17 +57,19 @@ class RegistrarEmpleado(QMainWindow):
             try:
                 cursor = conexion.cursor()
                 # Consulta para obtener los cargos
-                cursor.execute("SELECT idCargo, NombreCargo, Salario FROM Cargo")
+                cursor.execute("SELECT idCargo, NombreCargo FROM Cargo")
                 cargos = cursor.fetchall()
 
                 # Limpiar el ComboBox antes de llenarlo
                 self.comboBoxCargo.clear()
-
+                
                 # Llenar el ComboBox con los nombres de los cargos y sus ids
-                for id_cargo, nombre_cargo, salario in cargos:
-                    self.comboBoxCargo.addItem(f"{nombre_cargo} - Salario: {salario}", id_cargo)
-
+                for id_cargo, nombre_cargo in cargos:
+                    self.comboBoxCargo.addItem(f"{nombre_cargo}", id_cargo)
                 cursor.close()
+
+                self.comboBoxCargo.setCurrentIndex(-1)
+
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Error al cargar los cargos: {str(e)}")
                 print(f"Error al cargar los cargos: {str(e)}")
@@ -82,6 +86,7 @@ class RegistrarEmpleado(QMainWindow):
         cedula = self.txtCedula.text().strip()
         nombre = self.txtNombre.text().strip()
         clave = self.txtContrasenia.text().strip()
+        email = self.txtEmail.text().strip()
         id_cargo = self.comboBoxCargo.currentData()  # Obtener idCargo desde el comboBox
         id_sucursal = self.comboBoxSucursal.currentData()
 
@@ -95,6 +100,8 @@ class RegistrarEmpleado(QMainWindow):
         elif not clave:
             QMessageBox.warning(self, "Advertencia", "El campo de contraseña no puede estar vacío")
             return
+        elif not email:
+            QMessageBox.warning(self, "Advertencia", "El campo de correo electrónico no puede estar vacio")
         elif id_sucursal is None:
             QMessageBox.warning(self, "Advertencia", "Debe seleccionar una sucursal")
             return
@@ -108,10 +115,10 @@ class RegistrarEmpleado(QMainWindow):
                 cursor = conexion.cursor()
                 # Inserción de datos del empleado
                 query = """
-                    INSERT INTO Empleados (cedula, clave, nombre, idCargo, idSucursal)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO Empleados (cedula, clave, nombre, idCargo, idSucursal, email)
+                    VALUES (?, ?, ?, ?, ?, ?)
                 """
-                cursor.execute(query, (cedula, clave, nombre, id_cargo, id_sucursal))
+                cursor.execute(query, (cedula, clave, nombre, id_cargo, id_sucursal, email))
                 conexion.commit()
                 cursor.close()
                 QMessageBox.information(self, "Éxito", "Empleado creado con éxito")
@@ -130,5 +137,6 @@ class RegistrarEmpleado(QMainWindow):
         self.txtCedula.clear()
         self.txtNombre.clear()
         self.txtContrasenia.clear()
+        self.txtEmail.clear()
         self.comboBoxCargo.setCurrentIndex(-1)
         self.comboBoxSucursal.setCurrentIndex(-1)

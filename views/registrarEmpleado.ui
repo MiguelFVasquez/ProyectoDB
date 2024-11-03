@@ -157,6 +157,9 @@ border-radius: 4px
       <height>28</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(37, 99, 175);
@@ -205,7 +208,7 @@ border-radius: 4px
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>210</y>
+      <y>270</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -285,7 +288,7 @@ border-radius: 4px
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>190</y>
+      <y>250</y>
       <width>91</width>
       <height>20</height>
      </rect>
@@ -310,6 +313,9 @@ border-radius: 4px
       <width>93</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
@@ -358,6 +364,60 @@ color: rgb(0, 0, 0);
 border: 2px solid rgb(0,0,0);
 border-radius: 4px
 </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblEmail">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>180</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Email</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtEmail">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>200</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
+</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="placeholderText">
+     <string>Email</string>
     </property>
    </widget>
   </widget>

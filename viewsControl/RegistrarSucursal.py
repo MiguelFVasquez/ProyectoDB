@@ -8,10 +8,8 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
         uic.loadUi("views/registrarSucursales.ui", self)  # Cargar el archivo UI
         self.menu = menu 
         self.iniGui()
-
         # Conectar el botón para crear sucursal
         self.btnCrearSucursal.clicked.connect(self.crearSucursal)
-
         # Crear una instancia de la conexión a la base de datos
         self.db = Conexion()
 

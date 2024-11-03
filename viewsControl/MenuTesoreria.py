@@ -1,22 +1,29 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QMessageBox, QDialog
+from PyQt6.QtWidgets import QDialog, QMainWindow
 from PyQt6.QtCore import QPropertyAnimation
+from viewsControl.GestionPrestamos import GestionPrestamos
 
-class MenuTesoreria:
+class MenuTesoreria(QMainWindow):
     def __init__(self, login_window):
-        self.menuTesoreria = uic.loadUi("views/MenuTesoreria.ui")
+        super().__init__()
+        self.menuTesoreria = uic.loadUi("views/MenuTesoreria.ui", self)
         self.message = uic.loadUi("views/messageBox.ui")
         self.login_window = login_window  
         self.iniGui()
-        self.menuTesoreria.show()
+        self.show()
 
     def iniGui(self):
         # Conectar el botón de "LogOut" a la función logout
         self.menuTesoreria.btnLogOut.clicked.connect(self.logout)
+        self.menuTesoreria.btnGestionarSolicitudes.clicked.connect(self.abrirVentanaGestionPrestamos)
 
     def logout(self):
         # Mostrar mensaje de confirmación usando el método personalizado
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
+
+    def abrirVentanaGestionPrestamos(self):
+        self.ventanaGestionPrestamos = GestionPrestamos(self)
+        self.ventanaGestionPrestamos.show()
 
     def mensajeConfirmacion(self, title, message):
         # Cargar la interfaz de messageBox.ui
