@@ -76,17 +76,17 @@ class GestionPrestamos(QMainWindow):
         finally:
             self.db.close()
 
-    def registrar_prestamo(self, id_solicitud):
-        """Registra la solicitud en la tabla Prestamos una vez aprobada o rechazada."""
+    def registrar_prestamo(self, id_solicitud, valor_por_mes, fecha_desembolso):
+        """Registra la solicitud aprobada en la tabla Prestamos con el valor mensual y la fecha de desembolso."""
         try:
             conn = self.db.connect()
             cursor = conn.cursor()
             fecha_actual = date.today()
-            # Inserta el registro en la tabla Prestamos
+            # Inserta el registro en la tabla Prestamos con el valor mensual y la fecha de desembolso
             cursor.execute("""
-                INSERT INTO Prestamos (codigoSolicitud, fechaCreacion) 
-                VALUES (?, ?)
-            """, (id_solicitud, fecha_actual))
+                INSERT INTO Prestamos (codigoSolicitud, fechaCreacion, ValorPorMes, FechaDesembolso) 
+                VALUES (?, ?, ?, ?)
+            """, (id_solicitud, fecha_actual, valor_por_mes, fecha_desembolso))
             conn.commit()
         except Exception as e:
             print(f"Error al registrar el préstamo: {e}")
@@ -103,6 +103,12 @@ class GestionPrestamos(QMainWindow):
             for column_number, data in enumerate(prestamo[:-1]):  # No mostramos el email en la tabla
                 item = QTableWidgetItem(str(data))
                 self.tableWidgetPrestamos.setItem(row_number, column_number, item)
+    
+    def calcular_monto_mensual(self, monto, interes, numero_meses):
+        """Calcula el monto a pagar por mes, sumando el interés al monto inicial y dividiendo entre el período."""
+        monto_total = monto + (monto * interes / 100)
+        monto_mensual = monto_total / numero_meses
+        return (monto_mensual, 2)
 
     def aprobarPrestamo(self):
         """Aprueba el préstamo seleccionado en la tabla."""
@@ -115,16 +121,28 @@ class GestionPrestamos(QMainWindow):
         nombre_usuario = self.tableWidgetPrestamos.item(fila, 1).text()  # Nombre del usuario
         email_usuario = self.obtener_email_usuario(id_solicitud)  # Método para obtener el email
 
+        # Obtener detalles del préstamo
+        monto = float(self.tableWidgetPrestamos.item(fila, 4).text())
+        interes = 5.0  # Ejemplo de interés, ajusta esto según lo requerido
+        numero_meses = self.obtener_numero_meses_periodo(id_solicitud)
+
+        # Calcular el valor mensual del préstamo
+        if numero_meses:
+            valor_por_mes = self.calcular_monto_mensual(monto, interes, numero_meses)
+        else:
+            QMessageBox.critical(self, "Error", "No se pudo obtener el número de meses del periodo.")
+            return
+
+        # Calcular la fecha de desembolso (día 3 del mes siguiente)
+        hoy = date.today()
+        if hoy.month == 12:  # Si es diciembre, incrementa el año y reinicia el mes a enero
+            fecha_desembolso = date(hoy.year + 1, 1, 3)
+        else:
+            fecha_desembolso = date(hoy.year, hoy.month + 1, 3)
+
         if self.actualizar_estado_prestamo(id_solicitud, "Aprobado"):
             # Registrar en la tabla Prestamos
-            self.registrar_prestamo(id_solicitud)
-
-            # Calcular la fecha de desembolso (día 3 del mes siguiente)
-            hoy = date.today()
-            if hoy.month == 12:  # Si es diciembre, incrementa el año y reinicia el mes a enero
-                fecha_desembolso = date(hoy.year + 1, 1, 3)
-            else:
-                fecha_desembolso = date(hoy.year, hoy.month + 1, 3)
+            self.registrar_prestamo(id_solicitud, valor_por_mes, fecha_desembolso)
 
             # Enviar email de confirmación
             mensaje = (f"Tu solicitud ha sido aprobada. El dinero del préstamo será desembolsado directamente a tu "
@@ -179,6 +197,26 @@ class GestionPrestamos(QMainWindow):
             return email[0] if email else None
         except Exception as e:
             print(f"Error al obtener el email del usuario: {e}")
+            return None
+        finally:
+            self.db.close()
+
+    def obtener_numero_meses_periodo(self, id_solicitud):
+        """Obtiene el número de meses del periodo asociado a la solicitud de préstamo."""
+        try:
+            conn = self.db.connect()
+            cursor = conn.cursor()
+            # Consultar el número de meses en la tabla Periodo mediante la relación con SolicitudPrestamo
+            cursor.execute("""
+                SELECT p.numeroMeses
+                FROM Periodo p
+                JOIN SolicitudPrestamo sp ON sp.periodo = p.codigo
+                WHERE sp.codigo = ?
+            """, (id_solicitud,))
+            result = cursor.fetchone()
+            return result[0] if result else None
+        except Exception as e:
+            print(f"Error al obtener el número de meses del periodo: {e}")
             return None
         finally:
             self.db.close()

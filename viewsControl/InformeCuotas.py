@@ -4,65 +4,73 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from conexion import Conexion
 
 class InformeCuotas(QMainWindow):
-    def __init__(self, menuUsuarios):
+    def __init__(self, menuUsuarios, id_usuario):
         super().__init__()
         uic.loadUi("views/InformeCuotas.ui", self)
         self.menuUsuarios = menuUsuarios
         self.db = Conexion()
+        self.id_usuario = id_usuario  # ID del usuario que inicia sesión
         self.iniGui()
 
     def iniGui(self):
         self.btnRegresar.clicked.connect(self.regresarAlMenu)
         self.btnCrearPagoCuota.clicked.connect(self.registrarPago)
 
+        # Cargar los préstamos en el comboBox
+        self.cargarPrestamos()
+
+        # Autocompletar `txtFechaPago` con la fecha actual y deshabilitar el campo
+        fecha_actual = QDate.currentDate().toString("dd-MM-yyyy")
+        self.txtFechaPago.setText(fecha_actual)
+        self.txtFechaPago.setEnabled(False)  # Deshabilitar el campo para evitar ediciones
+
+        # Conectar el cambio de selección del préstamo para actualizar el valor
+        self.comboBoxPrestamos.currentIndexChanged.connect(self.actualizarValorPrestamo)
+        self.txtValorPago.setEnabled(False)
+
+    def cargarPrestamos(self):
+        """Carga los préstamos del usuario en el comboBox."""
+        try:
+            conn = self.db.connect()
+            cursor = conn.cursor()
+
+            # Consulta para obtener los préstamos del usuario, uniendo SolicitudPrestamos con Prestamos
+            cursor.execute("""
+                SELECT p.numeroPrestamos, p.ValorPorMes 
+                FROM Prestamos p
+                INNER JOIN SolicitudPrestamo sp ON p.codigoSolicitud = sp.codigo
+                WHERE sp.Usuario = ?
+            """, (self.id_usuario,))
+
+            prestamos = cursor.fetchall()
+
+            # Limpiar comboBox y añadir los préstamos
+            self.comboBoxPrestamos.clear()
+            for prestamo in prestamos:
+                id_prestamo, monto = prestamo
+                self.comboBoxPrestamos.addItem(f"Préstamo {id_prestamo}", monto)
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"No se pudieron cargar los préstamos: {e}")
+        finally:
+            self.db.close()
+
+
+    def actualizarValorPrestamo(self):
+        """Actualiza el valor del préstamo seleccionado en el campo de valor."""
+        monto = self.comboBoxPrestamos.currentData()  # Obtener el monto del préstamo seleccionado
+        if monto:
+            self.txtValorPago.setText(str(monto))
+
     def regresarAlMenu(self):
         # Cierra la ventana actual y muestra el menú principal
         self.close()
         self.menuUsuarios.show()
 
-    # def obtener_cuotas(self):
-    #     """Obtiene las cuotas pendientes de la base de datos para el usuario actual."""
-    #     cuotas = []
-    #     num_prestamo = self.txtNumeroPrestamo.text()  # Obtener el número de préstamo desde el formulario
-
-    #     if not num_prestamo:
-    #         QMessageBox.warning(self, "Error", "Debe ingresar un número de préstamo.")
-    #         return cuotas  # Si no se ha ingresado un número de préstamo, retorna una lista vacía
-
-    #     try:
-    #         conn = self.db.connect()  # Conectar a la base de datos
-    #         cursor = conn.cursor()
-    #         cursor.execute(""" 
-    #             SELECT 
-    #                 c.idCuota AS idCuota, 
-    #                 c.valorPagado AS ValorPagado, 
-    #                 c.fechaDePago AS FechaDePago, 
-    #                 c.numCuota, 
-    #                 c.fechaVencimiento, 
-    #                 ec.estado AS Estado
-    #             FROM 
-    #                 Cuotas c 
-    #             JOIN 
-    #                 EstadoCuota ec ON c.idEstado = ec.idEstado
-    #             WHERE 
-    #                 c.idPrestamo = ? AND c.idEstado != (SELECT idEstado FROM EstadoCuota WHERE estado = 'Pagado')
-    #         """, (num_prestamo,))  # Filtra por el número de préstamo obtenido del formulario
-
-    #         rows = cursor.fetchall()
-    #         for row in rows:
-    #             cuotas.append(row)
-    #         return cuotas
-    #     except Exception as e:
-    #         print(f"Error al obtener cuotas: {e}")
-    #         return []
-    #     finally:
-    #         self.db.close()
-
     def registrarPago(self):
         """Registra el pago de una cuota y valida los campos del formulario."""
-        num_prestamo = self.txtNumeroPrestamo.text()
+        num_prestamo = self.comboBoxPrestamos.currentText().split()[1]  # Obtener el id del préstamo seleccionado
         num_cuota = self.txtPagoCuota.text()
-        fecha_pago = self.dateEditFecha.date().toString("yyyy-MM-dd")
+        fecha_pago = self.txtFechaPago.text()  # Ya contiene la fecha actual deshabilitada
         valor_pago = self.txtValorPago.text()
 
         if not num_prestamo or not num_cuota or not valor_pago:
@@ -75,7 +83,7 @@ class InformeCuotas(QMainWindow):
             return
 
         # Validar si el pago se realizó antes del día 10 del mes
-        fecha_pago_obj = QDate.fromString(fecha_pago, "yyyy-MM-dd")
+        fecha_pago_obj = QDate.fromString(fecha_pago, "dd-MM-yyyy")
         if fecha_pago_obj.day() > 10:
             # Si es después del día 10, marcar como moroso
             self.marcarComoMoroso(num_cuota)
@@ -97,7 +105,6 @@ class InformeCuotas(QMainWindow):
             QMessageBox.warning(self, "Error", f"Error al registrar el pago: {e}")
         finally:
             self.db.close()
-
 
     def marcarComoMoroso(self, num_cuota):
         """Marca la cuota como morosa si el pago es posterior al 10 de cada mes."""

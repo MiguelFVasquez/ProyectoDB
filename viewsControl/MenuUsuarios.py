@@ -36,7 +36,7 @@ class MenuUsuarios(QMainWindow):
 
     def abrirVentanaInformeCuotas(self):
         self.menuUsuarios.close()
-        self.ventanaInformeCuotas = InformeCuotas(self)
+        self.ventanaInformeCuotas = InformeCuotas(self,self.Usuario)
         self.ventanaInformeCuotas.show()
 
     def mensajeConfirmacion(self, title, message):
