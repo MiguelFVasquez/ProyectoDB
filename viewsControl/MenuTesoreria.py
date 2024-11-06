@@ -22,6 +22,7 @@ class MenuTesoreria(QMainWindow):
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
 
     def abrirVentanaGestionPrestamos(self):
+        self.menuTesoreria.close()
         self.ventanaGestionPrestamos = GestionPrestamos(self)
         self.ventanaGestionPrestamos.show()
 

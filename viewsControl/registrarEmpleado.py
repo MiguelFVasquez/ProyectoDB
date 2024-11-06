@@ -1,6 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
-from conexion import Conexion  # Importar la clase de conexión
+from conexion import Conexion
 
 class RegistrarEmpleado(QMainWindow):
     def __init__(self, menu):

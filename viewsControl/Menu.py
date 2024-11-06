@@ -7,7 +7,7 @@ from viewsControl.RegistrarSucursal import RegistrarSucursal
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
         super().__init__()  # Inicializa el QMainWindow
-        uic.loadUi("views/Menu.ui", self)  # Cargar el archivo .ui directamente en la instancia de QMainWindow
+        self.menu = uic.loadUi("views/Menu.ui", self)  # Cargar el archivo .ui directamente en la instancia de QMainWindow
         self.login_window = login_window  # Referencia a la ventana de LogIn
         self.iniGui()
         self.show()  # Muestra la ventana de menú
@@ -21,10 +21,12 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
 
     def abrirVentanaCrearEmpleado(self):
         # Crea una instancia de la ventana de registrar empleado y la muestra
+        self.menu.close()
         self.ventanaRegistrarEmpleado = RegistrarEmpleado(self)  # Pasa 'self' como referencia del menú
         self.ventanaRegistrarEmpleado.show()  # Muestra la ventana de RegistrarEmpleado
 
     def abriVentanaCrearSucursal(self):
+        self.menu.close()
         self.ventanaRegistrarSucursal = RegistrarSucursal(self)
         self.ventanaRegistrarSucursal.show()
 

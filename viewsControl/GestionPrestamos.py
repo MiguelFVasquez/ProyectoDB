@@ -1,8 +1,8 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
+from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QMessageBox, QAbstractItemView
 from config.EmailService import EmailService
 from conexion import Conexion  # Clase de conexión
-from datetime import date  # Importar para obtener la fecha actual
+from datetime import date, timedelta  # Importar para obtener la fecha actual
 
 class GestionPrestamos(QMainWindow):
     def __init__(self, menuTesoreria):
@@ -19,6 +19,7 @@ class GestionPrestamos(QMainWindow):
         self.btnActualizar.clicked.connect(self.cargarPrestamos)
         self.btnAceptar.clicked.connect(self.aprobarPrestamo)
         self.btnRechazar.clicked.connect(self.rechazarPrestamo)
+        self.tableWidgetPrestamos.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
     def regresarAlMenu(self):
         """Cierra la ventana actual y muestra el menú principal."""
@@ -118,14 +119,25 @@ class GestionPrestamos(QMainWindow):
             # Registrar en la tabla Prestamos
             self.registrar_prestamo(id_solicitud)
 
-            QMessageBox.information(self, "Éxito", "Préstamo aprobado con éxito.")
+            # Calcular la fecha de desembolso (día 3 del mes siguiente)
+            hoy = date.today()
+            if hoy.month == 12:  # Si es diciembre, incrementa el año y reinicia el mes a enero
+                fecha_desembolso = date(hoy.year + 1, 1, 3)
+            else:
+                fecha_desembolso = date(hoy.year, hoy.month + 1, 3)
+
             # Enviar email de confirmación
+            mensaje = (f"Tu solicitud ha sido aprobada. El dinero del préstamo será desembolsado directamente a tu "
+                    f"cuenta en tu banco el día {fecha_desembolso.strftime('%d/%m/%Y')}.")
+            
             EmailService.emailMessages(
                 asunto="Solicitud aprobada",
-                email=email_usuario,  # Uso del email del usuario
-                nombre=nombre_usuario,  # Uso del nombre del usuario
-                mensaje="Tu solicitud ha sido aprobada. El dinero se ha desembolsado en su cuenta."
+                email=email_usuario,
+                nombre=nombre_usuario,
+                mensaje=mensaje
             )
+
+            QMessageBox.information(self, "Éxito", "Préstamo aprobado con éxito.")
             self.cargarPrestamos()
         else:
             QMessageBox.critical(self, "Error", "No se pudo aprobar el préstamo.")
