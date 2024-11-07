@@ -79,7 +79,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="txtCedula">
+   <widget class="QLineEdit" name="txtMonto">
     <property name="geometry">
      <rect>
       <x>80</x>

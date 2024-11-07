@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QMessageBox, QMainWindow, QDialog
 from PyQt6.QtCore import QPropertyAnimation
 from viewsControl.RegistrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
 from viewsControl.RegistrarSucursal import RegistrarSucursal
+from viewsControl.VerUsuarios import VerUsuarios
 
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
@@ -15,9 +16,9 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
     def iniGui(self):
         # Conectar el botón de "LogOut" a la función logout
         self.btnLogOut.clicked.connect(self.logout)
-        self.btnEmpleados.clicked.connect(self.mostrarEntidades)
         self.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)  # Conecta el botón de crear empleados
         self.btnCrearSucursales.clicked.connect(self.abriVentanaCrearSucursal)
+        self.btnEmpleados.clicked.connect(self.abrirVentanaVerUsuarios)
 
     def abrirVentanaCrearEmpleado(self):
         # Crea una instancia de la ventana de registrar empleado y la muestra
@@ -30,12 +31,14 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.ventanaRegistrarSucursal = RegistrarSucursal(self)
         self.ventanaRegistrarSucursal.show()
 
+    def abrirVentanaVerUsuarios(self):
+        self.menu.close()
+        self.ventanaVerUsuarios = VerUsuarios(self)
+        self.ventanaVerUsuarios.show()
+
     def logout(self):
         # Mostrar mensaje de confirmación usando el método personalizado
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
-
-    def mostrarEntidades(self):
-        QMessageBox.information(self, "Información", "Estamos trabajando en ello")
 
     def mensajeConfirmacion(self, title, message):
         # Cargar la interfaz de messageBox.ui

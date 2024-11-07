@@ -48,7 +48,7 @@ class SolicitarPrestamo(QMainWindow):
 
     def crearSolicitud(self):
         # Obtener monto y período seleccionado
-        monto = self.txtCedula.text().strip()
+        monto = self.txtMonto.text().strip()
         if not monto.isdigit():
             QMessageBox.warning(self, "Error", "Por favor, ingrese un monto válido.")
             return
@@ -111,6 +111,7 @@ class SolicitarPrestamo(QMainWindow):
 
                 # Mostrar mensaje de éxito y limpiar campos
                 QMessageBox.information(self, "Éxito", "Solicitud de préstamo registrada correctamente.")
+                self.limpiarCampos()
                 
                 # Enviar email de confirmación utilizando datos de la base de datos
                 EmailService.emailMessages(
@@ -119,7 +120,7 @@ class SolicitarPrestamo(QMainWindow):
                     nombre=nombre_usuario,  # Usar el nombre obtenido de la base de datos
                     mensaje="Tu solicitud se ha creado y se encuentra en estado pendiente. Pronto te enviaremos más información."
                 )
-                self.limpiarCampos()
+                QMessageBox.information(self, "Correo enviado", "Se le ha enviado un correo con la información.")
 
             except Exception as e:
                 conexion.rollback()  # Revertir la transacción en caso de error
@@ -131,5 +132,5 @@ class SolicitarPrestamo(QMainWindow):
 
     def limpiarCampos(self):
         # Limpiar el campo de monto después de registrar
-        self.txtCedula.clear()
+        self.txtMonto.clear()
         self.comboBoxCargo.setCurrentIndex(-1)  # Restablecer el comboBox

@@ -49,6 +49,8 @@ class InformeCuotas(QMainWindow):
             for prestamo in prestamos:
                 id_prestamo, monto = prestamo
                 self.comboBoxPrestamos.addItem(f"Préstamo {id_prestamo}", monto)
+
+            self.comboBoxPrestamos.setCurrentIndex(-1)
         except Exception as e:
             QMessageBox.warning(self, "Error", f"No se pudieron cargar los préstamos: {e}")
         finally:
@@ -82,27 +84,56 @@ class InformeCuotas(QMainWindow):
             QMessageBox.warning(self, "Error", "El valor a pagar debe ser mayor que cero.")
             return
 
+        # Validar si la cuota ya existe en la base de datos
+        if self.cuotaExiste(num_prestamo, num_cuota):
+            QMessageBox.warning(self, "Error", f"La cuota {num_cuota} ya ha sido registrada.")
+            return
+
         # Validar si el pago se realizó antes del día 10 del mes
         fecha_pago_obj = QDate.fromString(fecha_pago, "dd-MM-yyyy")
         if fecha_pago_obj.day() > 10:
             # Si es después del día 10, marcar como moroso
             self.marcarComoMoroso(num_cuota)
 
+        # Calcular la fecha de vencimiento (día 10 del siguiente mes)
+        siguiente_mes = fecha_pago_obj.addMonths(1)  # Agregar un mes
+        fecha_vencimiento = QDate(siguiente_mes.year(), siguiente_mes.month(), 10)  # Establecer día 10
+
         # Registrar la cuota pagada en la base de datos
         try:
             conn = self.db.connect()
             cursor = conn.cursor()
 
-            # Insertar un registro en la tabla de Cuotas (esto supone que creas la cuota en la base de datos)
+            # Insertar un registro en la tabla de Cuotas con la nueva fecha de vencimiento
             cursor.execute("""
                 INSERT INTO Cuotas (idPrestamo, numCuota, fechaVencimiento, valorPagado, fechaDePago, idEstado)
                 VALUES (?, ?, ?, ?, ?, (SELECT idEstado FROM EstadoCuota WHERE estado = 'Pagado'))
-            """, (num_prestamo, num_cuota, fecha_pago, valor_pago, fecha_pago))
+            """, (num_prestamo, num_cuota, fecha_vencimiento.toString("dd-MM-yyyy"), valor_pago, fecha_pago))
 
             conn.commit()
             QMessageBox.information(self, "Éxito", "Pago registrado exitosamente.")
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Error al registrar el pago: {e}")
+        finally:
+            self.db.close()
+
+    def cuotaExiste(self, num_prestamo, num_cuota):
+        """Verifica si la cuota ya existe en la base de datos."""
+        try:
+            conn = self.db.connect()
+            cursor = conn.cursor()
+
+            # Consulta para verificar si la cuota ya está registrada
+            cursor.execute("""
+                SELECT COUNT(*) FROM Cuotas WHERE idPrestamo = ? AND numCuota = ?
+            """, (num_prestamo, num_cuota))
+
+            # Obtener el número de coincidencias (debería ser 0 si no existe)
+            resultado = cursor.fetchone()[0]
+            return resultado > 0  # Devuelve True si la cuota ya existe, False si no
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Error al verificar la cuota: {e}")
+            return False
         finally:
             self.db.close()
 
