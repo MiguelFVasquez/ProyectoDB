@@ -4,6 +4,7 @@ from viewsControl.Menu import Menu
 from viewsControl.MenuUsuarios import MenuUsuarios
 from viewsControl.MenuTesoreria import MenuTesoreria 
 from conexion import Conexion
+from datetime import datetime
 
 class LogIn:
     def __init__(self):
@@ -12,6 +13,7 @@ class LogIn:
         self.login.lblMensajeError.setText("")
         self.login.show()
         self.db = Conexion()  # Instancia de la conexión a la base de datos
+        self.id_usuario = None  # Variable para almacenar el id del usuario que inicia sesión
 
     def initGUI(self):
         self.login.btnAcceder.clicked.connect(self.ingresar)
@@ -21,10 +23,10 @@ class LogIn:
         password = self.login.txtPassword.text()
 
         if len(usuario) < 2:
-            self.login.lblMensajeError.setText("Ingrese un usuario válido")
+            QMessageBox.critical(self.login, "Error", "Ingrese un usuario válido")
             self.login.txtUsuario.setFocus()
         elif len(password) < 3:
-            self.login.lblMensajeError.setText("Ingrese una contraseña válida")
+            QMessageBox.critical(self.login, "Error", "Ingrese una contraseña válida")
             self.login.txtPassword.setFocus()
         else:
             if usuario == "admin" and password == "admin":
@@ -39,13 +41,15 @@ class LogIn:
                     self.login.txtUsuario.clear()
                     self.login.txtPassword.clear()
                     cargo = resultado["cargo"]
-                    Usuario = resultado["Usuario"]  # Obtener el id del empleado
+                    self.id_usuario = resultado["Usuario"]  # Guardar el id del usuario aquí
+                    self.registrar_auditoria_entrada(self.id_usuario)  # Registrar entrada en la auditoría
                     if cargo == "Tesorero":
-                        self.mostrar_menu_tesoreria()
+                        self.mostrar_menu_tesoreria(self.id_usuario)
                     else:
-                        self.mostrar_menu_usuario(Usuario)  # Pasar el id al menú de usuario
+                        self.mostrar_menu_usuario(self.id_usuario) 
                 else:
-                    self.login.lblMensajeError.setText("Credenciales incorrectas")
+                    QMessageBox.critical(self.login, "Error", "Credenciales incorrectas")
+
 
     def validar_usuario_db(self, usuario, password):
         conexion = self.db.connect()
@@ -85,6 +89,24 @@ class LogIn:
         self.login.close()
         self.menu_Usuarios = MenuUsuarios(self.login, Usuario)  # Pasar el id al menú de usuario
 
-    def mostrar_menu_tesoreria(self):
+    def mostrar_menu_tesoreria(self, Usuario):
         self.login.close()
-        self.menu_Tesoreria = MenuTesoreria(self.login)
+        self.menu_Tesoreria = MenuTesoreria(self.login, Usuario)
+
+    def registrar_auditoria_entrada(self, id_usuario):
+        conexion = Conexion()
+        conn = conexion.connect()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                query = """
+                INSERT INTO Auditorias (idUsuario, Ingreso, Salida)
+                VALUES (?, GETDATE(), NULL)
+                """
+                cursor.execute(query, (id_usuario,))
+                conn.commit()
+                cursor.close()
+            except Exception as e:
+                print(f"Error al registrar auditoría de entrada: {e}")
+            finally:
+                conexion.close()

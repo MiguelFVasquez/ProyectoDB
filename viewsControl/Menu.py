@@ -4,6 +4,7 @@ from PyQt6.QtCore import QPropertyAnimation
 from viewsControl.RegistrarEmpleado import RegistrarEmpleado  # Importa la clase que creamos
 from viewsControl.RegistrarSucursal import RegistrarSucursal
 from viewsControl.VerUsuarios import VerUsuarios
+from viewsControl.VerAuditorias import VerAuditorias
 
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
@@ -11,20 +12,19 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.menu = uic.loadUi("views/Menu.ui", self)  # Cargar el archivo .ui directamente en la instancia de QMainWindow
         self.login_window = login_window  # Referencia a la ventana de LogIn
         self.iniGui()
-        self.show()  # Muestra la ventana de menú
+        self.show()
 
     def iniGui(self):
-        # Conectar el botón de "LogOut" a la función logout
         self.btnLogOut.clicked.connect(self.logout)
-        self.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)  # Conecta el botón de crear empleados
+        self.btnCrearEmpleados.clicked.connect(self.abrirVentanaCrearEmpleado)
         self.btnCrearSucursales.clicked.connect(self.abriVentanaCrearSucursal)
         self.btnEmpleados.clicked.connect(self.abrirVentanaVerUsuarios)
+        self.btnVerAuditorias.clicked.connect(self.abrirVentanaVerAuditorias)
 
     def abrirVentanaCrearEmpleado(self):
-        # Crea una instancia de la ventana de registrar empleado y la muestra
         self.menu.close()
-        self.ventanaRegistrarEmpleado = RegistrarEmpleado(self)  # Pasa 'self' como referencia del menú
-        self.ventanaRegistrarEmpleado.show()  # Muestra la ventana de RegistrarEmpleado
+        self.ventanaRegistrarEmpleado = RegistrarEmpleado(self)
+        self.ventanaRegistrarEmpleado.show()
 
     def abriVentanaCrearSucursal(self):
         self.menu.close()
@@ -36,9 +36,15 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.ventanaVerUsuarios = VerUsuarios(self)
         self.ventanaVerUsuarios.show()
 
-    def logout(self):
-        # Mostrar mensaje de confirmación usando el método personalizado
+    def abrirVentanaVerAuditorias(self):
+        self.menu.close()
+        self.ventanaVerAuditorias = VerAuditorias(self)
+        self.ventanaVerAuditorias.show()
+
+    def logout(self): 
+        # Luego, mostrar el mensaje de confirmación
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
+
 
     def mensajeConfirmacion(self, title, message):
         # Cargar la interfaz de messageBox.ui
@@ -69,4 +75,4 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
 
     def close_and_show_login(self):
         self.close()  # Cerrar el menú de administrador
-        self.login_window.show()  # Mostrar nuevamente la ventana de LogIn
+        self.login_window.show()  # Mostrar nuevamente la ventana de LogIn  

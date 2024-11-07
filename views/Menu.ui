@@ -107,7 +107,7 @@ background-color: rgba(0, 0, 0, 0);
      <string>Usuario</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnPrestamos">
+   <widget class="QPushButton" name="btnVerAuditorias">
     <property name="geometry">
      <rect>
       <x>220</x>

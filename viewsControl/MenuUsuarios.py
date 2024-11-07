@@ -1,6 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QDialog, QMainWindow
 from PyQt6.QtCore import QPropertyAnimation
+from conexion import Conexion
 from viewsControl.SolicitarPrestamo import SolicitarPrestamo
 from viewsControl.VerSolicitudes import VerSolicitudes
 from viewsControl.InformeCuotas import InformeCuotas
@@ -22,6 +23,8 @@ class MenuUsuarios(QMainWindow):
         self.menuUsuarios.btnCuotas.clicked.connect(self.abrirVentanaInformeCuotas)
 
     def logout(self):
+        if self.Usuario:  # Solo registrar la salida si hay un id_usuario
+            self.registrar_auditoria_salida(self.Usuario)
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
 
     def abriVentanaSolicitarPrestamo(self):
@@ -61,3 +64,34 @@ class MenuUsuarios(QMainWindow):
     def close_and_show_login(self):
         self.menuUsuarios.close()
         self.login_window.show()
+
+    def registrar_auditoria_salida(self, Usuario):
+        conexion = Conexion()
+        conn = conexion.connect()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                query = """
+                UPDATE Auditorias
+                SET Salida = GETDATE()
+                WHERE idUsuario = ? AND Salida IS NULL
+                AND Ingreso = (
+                    SELECT TOP 1 Ingreso
+                    FROM Auditorias
+                    WHERE idUsuario = ? AND Salida IS NULL
+                    ORDER BY Ingreso DESC
+                )
+                """
+                cursor.execute(query, (Usuario, Usuario))
+                conn.commit()
+
+                if cursor.rowcount > 0:
+                    print(f"Salida registrada correctamente para el usuario con ID: {Usuario}")
+                else:
+                    print(f"No se encontró el registro de entrada para el usuario con ID: {Usuario}")
+                
+                cursor.close()
+            except Exception as e:
+                print(f"Error al registrar auditoría de salida: {e}")
+            finally:
+                conexion.close()

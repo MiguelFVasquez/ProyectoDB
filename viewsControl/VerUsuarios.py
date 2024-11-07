@@ -20,7 +20,6 @@ class VerUsuarios(QMainWindow):
         self.close()
         self.menu.show()
 
-
     def obtener_usuarios(self):
         """Obtiene la lista de usuarios, su cargo y sucursal de la base de datos."""
         usuarios = []
