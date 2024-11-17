@@ -9,6 +9,7 @@ from viewsControl.RegistrarSucursal import RegistrarSucursal
 from viewsControl.VerUsuarios import VerUsuarios
 from viewsControl.VerAuditorias import VerAuditorias
 from viewsControl.VerPrestamosUsuarios import VerPrestamosUsuarios
+from viewsControl.ReportesAdmin import ReportesAdmin
 
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
@@ -27,6 +28,7 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.btnVerAuditorias.clicked.connect(self.abrirVentanaVerAuditorias)
         self.btnVerSolicitudesUsuarios.clicked.connect(self.abrirVentanaVerPrestamosUsuarios)
         self.btnAyudas.clicked.connect(self.abrirMenuAyuda)
+        self.btnReportes.clicked.connect(self.abrirVentanaReportes)
 
     def abrirVentanaCrearEmpleado(self):
         self.menu.close()
@@ -52,6 +54,11 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.menu.close()
         self.ventanaVerPrestamosUsuarios = VerPrestamosUsuarios(self)
         self.ventanaVerPrestamosUsuarios.show()
+
+    def abrirVentanaReportes(self):
+        self.menu.close()
+        self.ventanaReportes = ReportesAdmin(self)
+        self.ventanaReportes.show()
 
     def abrirMenuAyuda(self):   
         """Abrir la página de ayuda en un servidor web local."""

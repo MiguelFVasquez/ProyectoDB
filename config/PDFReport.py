@@ -1,6 +1,6 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-import os
+
 
 class GeneradorPDF:
     def __init__(self, nombre_pdf, num_prestamo, num_cuota, fecha_pago, valor_pago, fecha_vencimiento):

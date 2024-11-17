@@ -1,8 +1,9 @@
 import smtplib
+import os
+from datetime import datetime
 from email.message import EmailMessage
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-import os
 from PyQt6 import uic
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
@@ -55,7 +56,7 @@ class InformeCuotas(QMainWindow):
             self.comboBoxPrestamos.clear()
             for prestamo in prestamos:
                 codigo_solicitud, monto = prestamo
-                self.comboBoxPrestamos.addItem(f"Prestamos #{codigo_solicitud}", monto)
+                self.comboBoxPrestamos.addItem(f"No.Prestamo {codigo_solicitud}", monto)
 
             self.comboBoxPrestamos.setCurrentIndex(-1)
         except Exception as e:
@@ -91,8 +92,7 @@ class InformeCuotas(QMainWindow):
 
         # Obtener el id del préstamo seleccionado
         texto_prestamo = self.comboBoxPrestamos.currentText()
-        id_prestamo = texto_prestamo.split("#")[1] if "#" in texto_prestamo else texto_prestamo
-        id_prestamo = id_prestamo.strip()  # Limpia espacios adicionales o caracteres extraños
+        id_prestamo = texto_prestamo.split()[1]  # Ahora no hay "#", solo el número
 
         # Validar que el id_prestamo sea un número entero
         if not id_prestamo.isdigit():
@@ -117,7 +117,7 @@ class InformeCuotas(QMainWindow):
                     QMessageBox.warning(self, "Error", "Debe seleccionar un préstamo.")
                     return
                 
-                num_prestamo = prestamo_texto.split("#")[1].strip()
+                num_prestamo = prestamo_texto.split()[1].strip()
                 num_cuota = self.txtPagoCuota.text()
                 fecha_pago = self.txtFechaPago.text()  # Fecha ya precargada
                 valor_pago = self.txtValorPago.text()
@@ -170,6 +170,7 @@ class InformeCuotas(QMainWindow):
                 QMessageBox.warning(self, "Error", f"Error al registrar el pago: {e}")
             finally:
                 self.db.close()
+
 
     def generarPDF(self, num_prestamo, num_cuota, valor_pago, fecha_pago_obj, fecha_vencimiento):
         """Genera un PDF con la información del pago y lo guarda en el disco."""
