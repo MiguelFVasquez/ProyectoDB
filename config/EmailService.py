@@ -1,47 +1,57 @@
-import smtplib 
-from email.message import EmailMessage 
+import smtplib
+from email.message import EmailMessage
 
 class EmailService:
 
     @staticmethod
-    def emailMessages(asunto,email, nombre, mensaje):
+    def emailMessages(asunto, email, nombre, mensaje, archivo_adjunto=None):
         email_subject = asunto
-        sender_email_address = "mibancouq@gmail.com" 
+        sender_email_address = "mibancouq@gmail.com"
         receiver_email_address = email
-        email_smtp = "smtp.gmail.com" 
-        email_password = "jzwchomqjgaqiqir" 
+        email_smtp = "smtp.gmail.com"
+        email_password = "jzwchomqjgaqiqir"
 
-        # Create an email message object 
-        message = EmailMessage() 
+        # Crear el objeto de mensaje de correo
+        message = EmailMessage()
 
-        # Read and customize HTML file content
+        # Leer y personalizar el contenido del archivo HTML
         with open('config/message.html', 'r') as file:
             file_content = file.read()
             file_content = file_content.format(nombre=nombre, mensaje=mensaje)
 
-        # Configure email headers 
-        message['Subject'] = email_subject 
-        message['From'] = sender_email_address 
-        message['To'] = receiver_email_address 
+        # Configurar los encabezados del correo
+        message['Subject'] = email_subject
+        message['From'] = sender_email_address
+        message['To'] = receiver_email_address
 
-        # Set email body text 
-        message.set_content(file_content, subtype='html') 
+        # Establecer el contenido del correo en formato HTML
+        message.set_content(file_content, subtype='html')
 
-        # Set smtp server and port 
-        server = smtplib.SMTP(email_smtp, 587) 
+        # Agregar archivo adjunto si se proporciona
+        if archivo_adjunto:
+            try:
+                with open(archivo_adjunto, 'rb') as f:
+                    file_data = f.read()
+                    file_name = archivo_adjunto.split('/')[-1]  # Extraer solo el nombre del archivo
 
-        # Identify this client to the SMTP server 
-        server.ehlo() 
+                message.add_attachment(file_data, maintype='application', subtype='pdf', filename=file_name)
+            except Exception as e:
+                print(f"Error al adjuntar archivo: {e}")
 
-        # Secure the SMTP connection 
-        server.starttls() 
+        # Configurar el servidor SMTP y puerto
+        server = smtplib.SMTP(email_smtp, 587)
 
-        # Login to email account 
-        server.login(sender_email_address, email_password) 
+        # Identificar al cliente ante el servidor SMTP
+        server.ehlo()
 
-        # Send email 
-        server.send_message(message) 
+        # Asegurar la conexión SMTP
+        server.starttls()
 
-        # Close connection to server 
+        # Iniciar sesión en la cuenta de correo
+        server.login(sender_email_address, email_password)
+
+        # Enviar el mensaje
+        server.send_message(message)
+
+        # Cerrar la conexión con el servidor
         server.quit()
-

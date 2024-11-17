@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>menuTesoreria</class>
- <widget class="QMainWindow" name="menuTesoreria">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>555</width>
-    <height>298</height>
+    <width>475</width>
+    <height>288</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MenuTesoreria</string>
+   <string>Reportes</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -20,9 +20,9 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-80</x>
       <y>0</y>
-      <width>561</width>
+      <width>571</width>
       <height>51</height>
      </rect>
     </property>
@@ -50,9 +50,9 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>200</x>
        <y>10</y>
-       <width>81</width>
+       <width>221</width>
        <height>41</height>
       </rect>
      </property>
@@ -273,73 +273,15 @@
 background-color: rgba(0, 0, 0, 0);</string>
      </property>
      <property name="text">
-      <string>MENU</string>
+      <string>Generar reportes</string>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btnGestionarSolicitudes">
+   <widget class="QPushButton" name="btnReporteSucursal">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>180</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Gestionar solicitudes 
- de Prestamo</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblTransacciones">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>70</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgba(0, 0, 0, 0);
-</string>
-    </property>
-    <property name="text">
-     <string>Transacciones</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnVerSolicitudes">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>120</y>
+      <x>270</x>
+      <y>160</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -363,17 +305,17 @@ border: 2px solid rgb(0, 0, 0);
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Ver prestamos
- por usuario</string>
+     <string>Reporte por 
+ Sucursal</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnLogOut">
+   <widget class="QPushButton" name="btnReporteMoroso">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>260</y>
-      <width>93</width>
-      <height>28</height>
+      <x>190</x>
+      <y>100</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="cursor">
@@ -382,14 +324,76 @@ border-radius: 8px;  </string>
     <property name="focusPolicy">
      <enum>Qt::ClickFocus</enum>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(37, 99, 175);
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
 border: 2px solid rgb(0, 0, 0);  
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Cerrar sesión</string>
+     <string>Reporte 
+ Moroso</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReporteMunicipios">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>160</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Reporte por
+Municipio</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRegresar">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>250</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Regresar</string>
     </property>
    </widget>
   </widget>
