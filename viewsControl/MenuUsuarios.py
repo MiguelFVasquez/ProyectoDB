@@ -33,10 +33,10 @@ class MenuUsuarios(QMainWindow):
             try:
                 # Iniciar un servidor web local en el puerto 8000
                 self.server_process = subprocess.Popen(
-                    ["python", "-m", "http.server", "8000", "--directory", ayuda_path]
+                    ["python", "-m", "http.server", "8080", "--directory", ayuda_path]
                 )
                 # Abrir el navegador predeterminado con la URL
-                webbrowser.open("http://localhost:8000")
+                webbrowser.open("http://localhost:8080")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo iniciar el servidor de ayuda: {e}")
         else:
