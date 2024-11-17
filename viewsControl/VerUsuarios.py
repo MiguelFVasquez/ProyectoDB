@@ -1,20 +1,21 @@
 from PyQt6 import uic
-from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QTableWidget, QAbstractItemView
-from conexion import Conexion 
+from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QAbstractItemView, QMessageBox
+from conexion import Conexion
 
 class VerUsuarios(QMainWindow):
-    def __init__(self,menu):
+    def __init__(self, menu):
         super().__init__()
         uic.loadUi('views/verUsuarios.ui', self)
         self.menu = menu
-        self.db = Conexion()  
+        self.db = Conexion()
         self.iniGui()
         self.cargarUsuarios()
-    
+
     def iniGui(self):
         self.btnRegresar.clicked.connect(self.regresarAlMenu)
         self.btnActualizar.clicked.connect(self.cargarUsuarios)
-        self.tableWidgetUsuarios.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers) 
+        self.btnEliminar.clicked.connect(self.eliminarUsuario)  # Conectar botón de eliminar
+        self.tableWidgetUsuarios.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
     def regresarAlMenu(self):
         self.close()
@@ -26,22 +27,23 @@ class VerUsuarios(QMainWindow):
         try:
             conn = self.db.connect()
             cursor = conn.cursor()
-            # Consulta que une las tablas de Usuarios, Cargos y Sucursales
             cursor.execute("""
                 SELECT 
                     e.idUsuario AS idUsuario, 
                     e.nombre AS Nombre, 
-                    e.cedula AS cedula,  
-                    e.email AS email,
-                    c.NombreCargo AS Cargo,  -- Nombre del cargo del usuario
+                    e.cedula AS Cedula,  
+                    e.email AS Email,
+                    c.NombreCargo AS Cargo, 
                     c.Salario AS Salario,
-                    s.Municipio AS Sucursal  -- Nombre de la sucursal a la que pertenece el usuario
+                    s.Municipio AS Sucursal
                 FROM 
                     Empleados e
                 JOIN 
-                    Cargo c ON e.idCargo = c.idCargo  -- Relaciona con la tabla Cargos
+                    Cargo c ON e.idCargo = c.idCargo
                 JOIN 
-                    Sucursales s ON e.idSucursal = s.idSucursal  -- Relaciona con la tabla Sucursales
+                    Sucursales s ON e.idSucursal = s.idSucursal
+                WHERE 
+                    e.idEstado = 1  -- Solo usuarios con estado ACTIVO
             """)
             rows = cursor.fetchall()
             for row in rows:
@@ -56,10 +58,55 @@ class VerUsuarios(QMainWindow):
     def cargarUsuarios(self):
         """Carga los usuarios en la tabla."""
         self.tableWidgetUsuarios.setRowCount(0)  # Limpia la tabla
-        usuarios = self.obtener_usuarios()  # Llama al método para obtener los usuarios
-
+        usuarios = self.obtener_usuarios()
         for row_number, usuario in enumerate(usuarios):
-            self.tableWidgetUsuarios.insertRow(row_number)  # Inserta una nueva fila en la tabla
+            self.tableWidgetUsuarios.insertRow(row_number)
             for column_number, data in enumerate(usuario):
-                item = QTableWidgetItem(str(data))  # Coloca los datos de cada usuario en las celdas correspondientes
+                item = QTableWidgetItem(str(data))
                 self.tableWidgetUsuarios.setItem(row_number, column_number, item)
+
+    def eliminarUsuario(self):
+        """Cambia el estado de un usuario seleccionado a INACTIVO."""
+        # Obtener la fila seleccionada
+        selected_row = self.tableWidgetUsuarios.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "Advertencia", "Por favor, seleccione un usuario de la tabla.")
+            return
+
+        # Obtener datos del usuario seleccionado
+        idUsuario = self.tableWidgetUsuarios.item(selected_row, 0).text()
+        nombreUsuario = self.tableWidgetUsuarios.item(selected_row, 1).text()
+
+        # Mensaje de confirmación
+        respuesta = QMessageBox.question(
+            self,
+            "Confirmación",
+            f"¿Está seguro de que desea desactivar al usuario '{nombreUsuario}'?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        if respuesta == QMessageBox.StandardButton.Yes:
+            try:
+                # Conectar a la base de datos
+                conn = self.db.connect()
+                if conn is None:
+                    QMessageBox.critical(self, "Error", "No se pudo conectar a la base de datos.")
+                    return
+
+                cursor = conn.cursor()
+                # Cambiar el estado del usuario a INACTIVO (idEstado = 2)
+                cursor.execute("UPDATE Empleados SET idEstado = 2 WHERE idUsuario = ?", (idUsuario,))
+                conn.commit()
+
+                # Confirmar éxito al usuario
+                QMessageBox.information(self, "Éxito", f"El usuario '{nombreUsuario}' ha sido desactivado.")
+                
+                # Actualizar la tabla tras el cambio
+                self.cargarUsuarios()
+            except Exception as e:
+                # Mostrar error si ocurre durante el proceso
+                QMessageBox.critical(self, "Error", f"No se pudo desactivar al usuario. Error: {e}")
+            finally:
+                # Asegurar que la conexión se cierre correctamente
+                if conn is not None:
+                    self.db.close()

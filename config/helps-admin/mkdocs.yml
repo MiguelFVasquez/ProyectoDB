@@ -1,0 +1,18 @@
+site_name: MiBancoUQ Ayudas  # Nombre del sitio
+site_url: https://example.com  # URL de tu documentación (opcional)
+theme:
+  name: material  # Tema por defecto, puedes cambiarlo
+nav:  # Define la estructura de navegación
+  - Inicio: index.md
+
+  - Empleados: 
+    - Como crear un empleado: CrearEmpleado.md
+    - Ver usuario: VerUsuarios.md 
+    - Ver prestamos por usuario: VerPrestamosUsuarios.md
+  
+  - Transacciones:
+    - Ver auditorias de acceso: VerAuditorias.md 
+    - Como crear sucursales: CrearSucursal.md
+  
+  - Informacion:
+    - Como generar reportes: Reportes.md

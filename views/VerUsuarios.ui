@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>845</width>
-    <height>424</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>120</y>
+      <y>150</y>
       <width>721</width>
       <height>221</height>
      </rect>
@@ -243,8 +243,8 @@
    <widget class="QPushButton" name="btnActualizar">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>80</y>
+      <x>680</x>
+      <y>110</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -267,7 +267,7 @@ border-radius:8px
     <property name="geometry">
      <rect>
       <x>720</x>
-      <y>380</y>
+      <y>440</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -321,7 +321,7 @@ border-radius:8px
       <rect>
        <x>430</x>
        <y>10</y>
-       <width>361</width>
+       <width>371</width>
        <height>41</height>
       </rect>
      </property>
@@ -542,9 +542,117 @@ border-radius:8px
 background-color: rgba(0, 0, 0, 0);</string>
      </property>
      <property name="text">
-      <string>Gestion de ususarios</string>
+      <string>Gestion de Empleados</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btnEliminar">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>380</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(255, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Eliminar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBuscar">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>110</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Buscar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblEntidades">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>80</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgba(0, 0, 0, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>Buscar por cédula</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtCedula">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>110</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
+</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="placeholderText">
+     <string>Cedula</string>
+    </property>
    </widget>
   </widget>
  </widget>

@@ -78,7 +78,7 @@ border: 2px solid rgb(0, 0, 0);
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Ver usuarios</string>
+     <string>Ver Empleados</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblEntidades">
@@ -87,9 +87,9 @@ border-radius: 8px;  </string>
     </property>
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>80</y>
-      <width>81</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -104,7 +104,7 @@ background-color: rgba(0, 0, 0, 0);
 </string>
     </property>
     <property name="text">
-     <string>Usuario</string>
+     <string>Empleados</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnVerAuditorias">
@@ -510,7 +510,7 @@ border: 2px solid rgb(0, 0, 0);
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Crear usuarios</string>
+     <string>Crear Empleados</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnCrearSucursales">
@@ -570,7 +570,7 @@ border-radius: 8px;  </string>
     </property>
     <property name="text">
      <string>Ver prestamos
- por usuario</string>
+ por empleado</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnAyudas">

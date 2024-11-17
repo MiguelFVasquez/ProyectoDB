@@ -28,7 +28,7 @@ class MenuUsuarios(QMainWindow):
 
     def abrirMenuAyuda(self):   
         """Abrir la página de ayuda en un servidor web local."""
-        ayuda_path = os.path.abspath("config/helps/site")  # Ruta a los archivos generados por MkDocs
+        ayuda_path = os.path.abspath("config/helps-users/site")  # Ruta a los archivos generados por MkDocs
         if os.path.exists(ayuda_path):
             try:
                 # Iniciar un servidor web local en el puerto 8000

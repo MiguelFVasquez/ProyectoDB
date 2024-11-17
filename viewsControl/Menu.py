@@ -1,3 +1,6 @@
+import subprocess
+import webbrowser
+import os
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QDialog
 from PyQt6.QtCore import QPropertyAnimation
@@ -12,6 +15,7 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         super().__init__()  # Inicializa el QMainWindow
         self.menu = uic.loadUi("views/Menu.ui", self)  # Cargar el archivo .ui directamente en la instancia de QMainWindow
         self.login_window = login_window  # Referencia a la ventana de LogIn
+        self.server_process = None
         self.iniGui()
         self.show()
 
@@ -22,6 +26,7 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.btnEmpleados.clicked.connect(self.abrirVentanaVerUsuarios)
         self.btnVerAuditorias.clicked.connect(self.abrirVentanaVerAuditorias)
         self.btnVerSolicitudesUsuarios.clicked.connect(self.abrirVentanaVerPrestamosUsuarios)
+        self.btnAyudas.clicked.connect(self.abrirMenuAyuda)
 
     def abrirVentanaCrearEmpleado(self):
         self.menu.close()
@@ -48,10 +53,33 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.ventanaVerPrestamosUsuarios = VerPrestamosUsuarios(self)
         self.ventanaVerPrestamosUsuarios.show()
 
+    def abrirMenuAyuda(self):   
+        """Abrir la página de ayuda en un servidor web local."""
+        ayuda_path = os.path.abspath("config/helps-admin/site")  # Ruta a los archivos generados por MkDocs
+        if os.path.exists(ayuda_path):
+            try:
+                # Iniciar un servidor web local en el puerto 8000
+                self.server_process = subprocess.Popen(
+                    ["python", "-m", "http.server", "8000", "--directory", ayuda_path]
+                )
+                # Abrir el navegador predeterminado con la URL
+                webbrowser.open("http://localhost:8000")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"No se pudo iniciar el servidor de ayuda: {e}")
+        else:
+            QMessageBox.warning(self, "Ayuda", "El archivo de ayuda no se encontró.")
+
+    def detenerServidorWeb(self):
+        """Detener el servidor web local si está en ejecución."""
+        if self.server_process:
+            self.server_process.terminate()  # Finalizar el proceso del servidor
+            self.server_process = None
+            print("Servidor web detenido.")
+
     def logout(self): 
         # Luego, mostrar el mensaje de confirmación
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
-
+        self.detenerServidorWeb()
 
     def mensajeConfirmacion(self, title, message):
             msg_box = QMessageBox(self)
