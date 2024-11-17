@@ -5,6 +5,7 @@ from viewsControl.RegistrarEmpleado import RegistrarEmpleado  # Importa la clase
 from viewsControl.RegistrarSucursal import RegistrarSucursal
 from viewsControl.VerUsuarios import VerUsuarios
 from viewsControl.VerAuditorias import VerAuditorias
+from viewsControl.VerPrestamosUsuarios import VerPrestamosUsuarios
 
 class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ventanas
     def __init__(self, login_window):
@@ -20,6 +21,7 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.btnCrearSucursales.clicked.connect(self.abriVentanaCrearSucursal)
         self.btnEmpleados.clicked.connect(self.abrirVentanaVerUsuarios)
         self.btnVerAuditorias.clicked.connect(self.abrirVentanaVerAuditorias)
+        self.btnVerSolicitudesUsuarios.clicked.connect(self.abrirVentanaVerPrestamosUsuarios)
 
     def abrirVentanaCrearEmpleado(self):
         self.menu.close()
@@ -41,37 +43,36 @@ class Menu(QMainWindow):  # Hereda de QMainWindow para consistencia con otras ve
         self.ventanaVerAuditorias = VerAuditorias(self)
         self.ventanaVerAuditorias.show()
 
+    def abrirVentanaVerPrestamosUsuarios(self):
+        self.menu.close()
+        self.ventanaVerPrestamosUsuarios = VerPrestamosUsuarios(self)
+        self.ventanaVerPrestamosUsuarios.show()
+
     def logout(self): 
         # Luego, mostrar el mensaje de confirmación
         self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
 
 
     def mensajeConfirmacion(self, title, message):
-        # Cargar la interfaz de messageBox.ui
-        self.message = QDialog()
-        self.message = uic.loadUi("views/messageBox.ui", self.message)
-        
-        # Establecer el título y el mensaje
-        self.message.lblTitulo.setText(title)
-        self.message.lblMensaje.setText(message)
+            msg_box = QMessageBox(self)
+            msg_box.setWindowTitle(title)
+            msg_box.setText(message)
+            msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            result = msg_box.exec()
 
-        # Conectar botones
-        self.message.btnSi.clicked.connect(lambda: self.handleResponse(True))
-        self.message.btnNo.clicked.connect(lambda: self.handleResponse(False))
-
-        # Mostrar el cuadro de diálogo
-        self.message.exec()
+            if result == QMessageBox.StandardButton.Yes:
+                self.handleResponse(True)
+            else:
+                self.handleResponse(False)
 
     def handleResponse(self, accepted):
         if accepted:
-            # Crear animación para desvanecer la ventana
-            self.animation = QPropertyAnimation(self, b"windowOpacity")
-            self.animation.setDuration(400)  # Duración de 0.4 segundos
-            self.animation.setStartValue(1)  # Opacidad inicial
-            self.animation.setEndValue(0)  # Opacidad final
+            self.animation = QPropertyAnimation(self.menu, b"windowOpacity")
+            self.animation.setDuration(400)
+            self.animation.setStartValue(1)
+            self.animation.setEndValue(0)
             self.animation.finished.connect(self.close_and_show_login)
-            self.animation.start()  # Iniciar la animación
-        self.message.close()
+            self.animation.start()
 
     def close_and_show_login(self):
         self.close()  # Cerrar el menú de administrador

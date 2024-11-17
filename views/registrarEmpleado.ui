@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>504</width>
-    <height>373</height>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -152,7 +152,7 @@ border-radius: 4px
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>330</y>
+      <y>410</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -308,8 +308,8 @@ border-radius: 4px
    <widget class="QPushButton" name="btnRegresar">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>330</y>
+      <x>390</x>
+      <y>410</y>
       <width>93</width>
       <height>28</height>
      </rect>

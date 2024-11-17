@@ -544,7 +544,7 @@ border-radius: 8px;  </string>
      <string>Crear Sucursal</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVerSolicitudesEmpleados">
+   <widget class="QPushButton" name="btnVerSolicitudesUsuarios">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -569,7 +569,7 @@ border: 2px solid rgb(0, 0, 0);
 border-radius: 8px;  </string>
     </property>
     <property name="text">
-     <string>Ver solicitudes
+     <string>Ver prestamos
  por usuario</string>
     </property>
    </widget>

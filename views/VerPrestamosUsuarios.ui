@@ -1,29 +1,312 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>menuTesoreria</class>
- <widget class="QMainWindow" name="menuTesoreria">
+ <class>VerPrestamosUsuarios</class>
+ <widget class="QMainWindow" name="VerPrestamosUsuarios">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>555</width>
-    <height>298</height>
+    <width>1010</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MenuTesoreria</string>
+   <string>Ver´Prestamos Usuarios</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QTableWidget" name="tableWidgetPrestamosUsuarios">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>961</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>idUsuario</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NombreUsuario</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>CedulaUsuario</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Cargo</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>idPrestamo</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Monto</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Meses</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>EstadoPrestamo</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>FechaCreacion</string>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+     <property name="background">
+      <color>
+       <red>37</red>
+       <green>99</green>
+       <blue>175</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+   </widget>
+   <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>561</width>
-      <height>51</height>
+      <width>1011</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -44,15 +327,15 @@
     <property name="midLineWidth">
      <number>3</number>
     </property>
-    <widget class="QLabel" name="lblMenu">
+    <widget class="QLabel" name="lblTittle">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>330</x>
        <y>10</y>
-       <width>81</width>
+       <width>441</width>
        <height>41</height>
       </rect>
      </property>
@@ -257,7 +540,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>15</pointsize>
+       <pointsize>20</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -273,57 +556,48 @@
 background-color: rgba(0, 0, 0, 0);</string>
      </property>
      <property name="text">
-      <string>MENU</string>
+      <string>Ver prestamos por usuario</string>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btnGestionarSolicitudes">
+   <widget class="QPushButton" name="btnBuscar">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>180</y>
-      <width>131</width>
-      <height>41</height>
+      <x>170</x>
+      <y>120</y>
+      <width>93</width>
+      <height>28</height>
      </rect>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
     </property>
     <property name="text">
-     <string>Gestionar solicitudes 
- de Prestamo</string>
+     <string>Buscar</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblTransacciones">
+   <widget class="QLabel" name="lblEntidades">
     <property name="enabled">
      <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>70</y>
+      <x>30</x>
+      <y>90</y>
       <width>141</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>13</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -332,78 +606,50 @@ background-color: rgba(0, 0, 0, 0);
 </string>
     </property>
     <property name="text">
-     <string>Transacciones</string>
+     <string>Buscar por cédula</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVerSolicitudes">
+   <widget class="QLineEdit" name="txtCedula">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>30</x>
       <y>120</y>
-      <width>101</width>
-      <height>41</height>
+      <width>131</width>
+      <height>31</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>true</kerning>
+     </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
+</string>
     </property>
-    <property name="text">
-     <string>Ver prestamos
- por usuario</string>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
     </property>
-   </widget>
-   <widget class="QPushButton" name="btnReportes">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>180</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="autoFillBackground">
+    <property name="readOnly">
      <bool>false</bool>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(202, 253, 255);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
-    </property>
-    <property name="text">
-     <string>Generar
-Resportes</string>
+    <property name="placeholderText">
+     <string>Cedula</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnLogOut">
+   <widget class="QPushButton" name="btnActualizar">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>260</y>
+      <x>900</x>
+      <y>130</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -411,17 +657,38 @@ Resportes</string>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Actualizar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRegresar">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>470</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(37, 99, 175);
-border: 2px solid rgb(0, 0, 0);  
-border-radius: 8px;  </string>
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
     </property>
     <property name="text">
-     <string>Cerrar sesión</string>
+     <string>Regresar</string>
     </property>
    </widget>
   </widget>
