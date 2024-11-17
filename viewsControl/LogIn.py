@@ -35,7 +35,9 @@ class LogIn:
                 self.mostrar_menu_admin()
             else:
                 resultado = self.validar_usuario_db(usuario, password)
-                if resultado:
+                if resultado == "inactivo":
+                    QMessageBox.warning(self.login, "Advertencia", "Su cuenta está inactiva. Contacte con el administrador.")
+                elif resultado:
                     self.login.lblMensajeError.setText("")
                     self.login.txtUsuario.clear()
                     self.login.txtPassword.clear()
@@ -45,9 +47,10 @@ class LogIn:
                     if cargo == "Tesorero":
                         self.mostrar_menu_tesoreria(self.id_usuario)
                     else:
-                        self.mostrar_menu_usuario(self.id_usuario) 
+                        self.mostrar_menu_usuario(self.id_usuario)
                 else:
                     QMessageBox.critical(self.login, "Error", "Credenciales incorrectas")
+
 
 
     def validar_usuario_db(self, usuario, password):
@@ -55,8 +58,9 @@ class LogIn:
         if conexion:
             try:
                 cursor = conexion.cursor()
+                # Verificar si el usuario existe con las credenciales proporcionadas
                 query = """
-                SELECT E.idUsuario, E.idCargo, C.NombreCargo 
+                SELECT E.idUsuario, E.idCargo, C.NombreCargo, E.idEstado
                 FROM Empleados E
                 JOIN Cargo C ON E.idCargo = C.idCargo
                 WHERE E.cedula = ? AND E.clave = ?
@@ -67,6 +71,9 @@ class LogIn:
                 self.db.close()
 
                 if result:
+                    # Validar si el usuario está inactivo
+                    if result[3] != 1:  # idEstado ≠ 1
+                        return "inactivo"
                     return {
                         "Usuario": result[0],  # id del empleado
                         "idCargo": result[1],
@@ -79,6 +86,7 @@ class LogIn:
                 return False
         else:
             return False
+
 
     def mostrar_menu_admin(self):
         self.login.close()
