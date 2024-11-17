@@ -1,0 +1,884 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/VerPrestamosUsuarios/">
+      
+      
+        <link rel="prev" href="../VerUsuarios/">
+      
+      
+        <link rel="next" href="../VerAuditorias/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Ver prestamos por usuario - MiBancoUQ Ayudas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ver-prestamos-de-empleados" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MiBancoUQ Ayudas" class="md-header__button md-logo" aria-label="MiBancoUQ Ayudas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MiBancoUQ Ayudas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ver prestamos por usuario
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MiBancoUQ Ayudas" class="md-nav__button md-logo" aria-label="MiBancoUQ Ayudas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MiBancoUQ Ayudas
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Empleados
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Empleados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CrearEmpleado/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Como crear un empleado
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VerUsuarios/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ver usuario
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ver prestamos por usuario
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Ver prestamos por usuario
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-prestamos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabla de Préstamos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-de-la-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades de la Tabla
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionalidades de la Tabla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizacion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualización General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-por-cedula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda por Cédula
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de Tabla
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consejos-para-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consejos para el Usuario
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Transacciones
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Transacciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VerAuditorias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ver auditorias de acceso
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CrearSucursal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Como crear sucursales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Informacion
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Informacion
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reportes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Como generar reportes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-de-prestamos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabla de Préstamos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-de-la-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades de la Tabla
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionalidades de la Tabla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizacion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualización General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-por-cedula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda por Cédula
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de Tabla
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consejos-para-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consejos para el Usuario
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ver-prestamos-de-empleados"><strong>Ver Préstamos de Empleados</strong></h1>
+<p>En esta sección, puedes visualizar los préstamos solicitados por los empleados registrados en el sistema. La información se presenta en una tabla detallada con opción de búsqueda por cédula.</p>
+<hr />
+<h2 id="tabla-de-prestamos">Tabla de Préstamos</h2>
+<p>La tabla muestra los siguientes datos para cada solicitud de préstamo:</p>
+<ol>
+<li>
+<p><strong>ID del Empleado</strong>: </p>
+<ul>
+<li><strong>Descripción:</strong> Identificador único del empleado asociado al préstamo.  </li>
+<li><strong>Formato:</strong> Número entero.  </li>
+<li><strong>Ejemplo:</strong> <code>1</code>, <code>15</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Nombre del Empleado</strong>: </p>
+<ul>
+<li><strong>Descripción:</strong> Nombre completo del empleado que solicitó el préstamo.  </li>
+<li><strong>Formato:</strong> Cadena de texto.  </li>
+<li><strong>Ejemplo:</strong> <code>Juan Pérez</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cédula del Empleado</strong>:  </p>
+<ul>
+<li><strong>Descripción:</strong> Número de identificación del empleado.  </li>
+<li><strong>Formato:</strong> Número entero sin caracteres especiales.  </li>
+<li><strong>Ejemplo:</strong> <code>1023456789</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cargo</strong>:  </p>
+<ul>
+<li><strong>Descripción:</strong> Cargo del empleado dentro de la empresa.  </li>
+<li><strong>Formato:</strong> Texto predefinido en el sistema.  </li>
+<li><strong>Ejemplo:</strong> <code>Operario</code>, <code>Administrativo</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ID del Préstamo</strong>:</p>
+<ul>
+<li><strong>Descripción:</strong> Identificador único de la solicitud de préstamo.  </li>
+<li><strong>Formato:</strong> Número entero.  </li>
+<li><strong>Ejemplo:</strong> <code>1</code>, <code>18</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Monto</strong>:</p>
+<ul>
+<li><strong>Descripción:</strong> Cantidad de dinero solicitada en el préstamo.  </li>
+<li><strong>Formato:</strong> Número con decimales en la moneda correspondiente.  </li>
+<li><strong>Ejemplo:</strong> <code>$10,000,000</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Meses</strong>:</p>
+<ul>
+<li><strong>Descripción:</strong> Número de meses para los cuales se solicitó el préstamo.  </li>
+<li><strong>Formato:</strong> Número entero.  </li>
+<li><strong>Ejemplo:</strong> <code>24</code>, <code>48</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Estado</strong>:  </p>
+<ul>
+<li><strong>Descripción:</strong> Estado actual de la solicitud de préstamo.  </li>
+<li><strong>Formato:</strong> Texto predefinido en el sistema.  </li>
+<li><strong>Opciones comunes:</strong>:  <ul>
+<li><strong>Pendiente:</strong> La solicitud está en espera de aprobación.  </li>
+<li><strong>Aprobado:</strong> La solicitud fue aprobada.  </li>
+<li><strong>Rechazado:</strong> La solicitud fue rechazada.  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Fecha de Creación</strong>:  </p>
+<ul>
+<li><strong>Descripción:</strong> Fecha en que se generó la solicitud de préstamo.  </li>
+<li><strong>Formato:</strong> Fecha en formato <code>DD/MM/AAAA</code>.  </li>
+<li><strong>Ejemplo:</strong> <code>15/11/2024</code>.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="funcionalidades-de-la-tabla">Funcionalidades de la Tabla</h2>
+<h3 id="visualizacion-general">Visualización General</h3>
+<ul>
+<li>La tabla muestra todos los préstamos registrados en el sistema.</li>
+</ul>
+<h3 id="busqueda-por-cedula">Búsqueda por Cédula</h3>
+<ul>
+<li>Usa la barra de búsqueda para filtrar los préstamos por el número de cédula de un empleado.</li>
+<li><strong>Cómo buscar:</strong></li>
+<li>Introduce el número de cédula en el campo de búsqueda.</li>
+<li>La tabla mostrará únicamente las solicitudes de préstamo asociadas a esa cédula.</li>
+</ul>
+<hr />
+<h2 id="ejemplo-de-tabla">Ejemplo de Tabla</h2>
+<table>
+<thead>
+<tr>
+<th>ID Empleado</th>
+<th>Nombre</th>
+<th>Cédula</th>
+<th>Cargo</th>
+<th>ID Préstamo</th>
+<th>Monto</th>
+<th>Meses</th>
+<th>Estado</th>
+<th>Fecha de Creación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Juan Pérez</td>
+<td>1023456789</td>
+<td>Operario</td>
+<td>1001</td>
+<td>$5,000,000</td>
+<td>12</td>
+<td>Aprobado</td>
+<td>10/10/2024</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ana Gómez</td>
+<td>1034567890</td>
+<td>Administrativo</td>
+<td>1002</td>
+<td>$2,500,000</td>
+<td>24</td>
+<td>Pendiente</td>
+<td>12/11/2024</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="restricciones">Restricciones</h2>
+<ul>
+<li><strong>Solo visualización:</strong> No es posible editar ni eliminar registros desde esta sección.</li>
+</ul>
+<hr />
+<h2 id="consejos-para-el-usuario">Consejos para el Usuario</h2>
+<ol>
+<li><strong>Búsqueda eficiente:</strong> Asegúrate de ingresar el número de cédula completo y sin espacios para obtener resultados precisos.</li>
+<li><strong>Estados de préstamos:</strong> Consulta el significado de cada estado en la sección de ayuda si tienes dudas.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
