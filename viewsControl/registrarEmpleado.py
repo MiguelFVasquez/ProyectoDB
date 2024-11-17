@@ -90,7 +90,7 @@ class RegistrarEmpleado(QMainWindow):
         id_cargo = self.comboBoxCargo.currentData()  # Obtener idCargo desde el comboBox
         id_sucursal = self.comboBoxSucursal.currentData()
 
-        # Validaciones
+        # Validaciones iniciales
         if not cedula:
             QMessageBox.warning(self, "Advertencia", "El campo de cédula no puede estar vacío")
             return
@@ -101,7 +101,8 @@ class RegistrarEmpleado(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "El campo de contraseña no puede estar vacío")
             return
         elif not email:
-            QMessageBox.warning(self, "Advertencia", "El campo de correo electrónico no puede estar vacio")
+            QMessageBox.warning(self, "Advertencia", "El campo de correo electrónico no puede estar vacío")
+            return
         elif id_sucursal is None:
             QMessageBox.warning(self, "Advertencia", "Debe seleccionar una sucursal")
             return
@@ -113,17 +114,31 @@ class RegistrarEmpleado(QMainWindow):
         if conexion:
             try:
                 cursor = conexion.cursor()
-                # Inserción de datos del empleado
+                
+                # Validar si la cédula ya existe
+                cursor.execute("SELECT COUNT(*) FROM Empleados WHERE cedula = ?", (cedula,))
+                if cursor.fetchone()[0] > 0:
+                    QMessageBox.warning(self, "Advertencia", "La cédula ingresada ya está registrada")
+                    return
+
+                # Validar si el correo electrónico ya existe
+                cursor.execute("SELECT COUNT(*) FROM Empleados WHERE email = ?", (email,))
+                if cursor.fetchone()[0] > 0:
+                    QMessageBox.warning(self, "Advertencia", "El correo electrónico ingresado ya está registrado")
+                    return
+
+                # Inserción de datos del empleado con estado activo (1)
                 query = """
-                    INSERT INTO Empleados (cedula, clave, nombre, idCargo, idSucursal, email)
-                    VALUES (?, ?, ?, ?, ?, ?)
+                    INSERT INTO Empleados (cedula, clave, nombre, idCargo, idSucursal, email, Estado)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
                 """
-                cursor.execute(query, (cedula, clave, nombre, id_cargo, id_sucursal, email))
+                cursor.execute(query, (cedula, clave, nombre, id_cargo, id_sucursal, email, 1))  # Estado es 1 (activo)
                 conexion.commit()
                 cursor.close()
                 QMessageBox.information(self, "Éxito", "Empleado creado con éxito")
                 print(f"Empleado creado con cédula: {cedula}, nombre: {nombre}, idCargo: {id_cargo}")
                 self.limpiarCampos()
+
             except Exception as e:
                 conexion.rollback()
                 QMessageBox.critical(self, "Error", f"Error al crear el empleado: {e}")
@@ -132,6 +147,8 @@ class RegistrarEmpleado(QMainWindow):
                 self.db.close()
         else:
             QMessageBox.critical(self, "Error", "No se pudo conectar a la base de datos")
+
+
 
     def limpiarCampos(self):
         self.txtCedula.clear()
