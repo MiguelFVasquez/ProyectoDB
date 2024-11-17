@@ -1,0 +1,9 @@
+site_name: MiBancoUQ Ayudas  # Nombre del sitio
+site_url: https://example.com  # URL de tu documentación (opcional)
+theme:
+  name: material  # Tema por defecto, puedes cambiarlo
+nav:  # Define la estructura de navegación
+  - Inicio: index.md
+  - Solicitar Préstamos : RegistrarPrestamo.md
+  - Informe de Cuotas : InformeCuotas.md
+  - Ver Solicitudes : VerSolicitudes.md

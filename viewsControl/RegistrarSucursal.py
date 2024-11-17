@@ -12,6 +12,7 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
         self.btnCrearSucursal.clicked.connect(self.crearSucursal)
         # Crear una instancia de la conexión a la base de datos
         self.db = Conexion()
+        self.cargarMunicipios()
 
     def iniGui(self):
         self.btnRegresar.clicked.connect(self.regresarAlMenu)
@@ -21,15 +22,40 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
         self.close()
         self.menu.show()
 
+    def cargarMunicipios(self):
+        conexion = self.db.connect()
+        if conexion:
+            try:
+                cursor = conexion.cursor()
+                cursor.execute("SELECT idMunicipio, nombre FROM Municipios")
+                municipios = cursor.fetchall()
+
+                self.comboBoxMunicipios.clear()
+
+                # Agregar el nombre del municipio al comboBox y asociar el id como "data"
+                for idMunicipio, nombreMunicipio in municipios:
+                    self.comboBoxMunicipios.addItem(nombreMunicipio, idMunicipio)
+                cursor.close()
+
+                self.comboBoxMunicipios.setCurrentIndex(-1)
+
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Error al cargar los municipios: {str(e)}")
+                print(f"Error al cargar los municipios: {str(e)}")
+            finally:
+                self.db.close()
+        else:
+            QMessageBox.critical(self, "Error", "No se pudo conectar a la base de datos")
+
     def crearSucursal(self):
         # Obtener datos de los campos de entrada
         NombreSucursal = self.txtNombreSucursal.text().strip()
-        Direccion = self.txtDireccionSucursal.text().strip()  # Corrige el nombre del campo
-        Municipio = self.txtMunicipioSucursal.text().strip()
-        Departamento = self.txtDepartamentoSucursal.text().strip()  # Corrige el nombre del campo
+        Direccion = self.txtDireccionSucursal.text().strip()
+        # Obtener el id del municipio seleccionado
+        MunicipioId = self.comboBoxMunicipios.currentData()
 
         # Validar que los campos no estén vacíos
-        if not NombreSucursal or not Direccion or not Municipio or not Departamento:
+        if not NombreSucursal or not Direccion or MunicipioId is None:
             QMessageBox.warning(self, "Error", "Por favor, complete todos los campos.")
             return
         
@@ -39,12 +65,12 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
             try:
                 cursor = conexion.cursor()
 
-                # Consulta SQL para insertar la sucursal
+                # Consulta SQL para insertar la sucursal usando el id del municipio
                 query = """
-                    INSERT INTO Sucursal (NombreSucursal, Direccion, Municipio, Departamento)
-                    VALUES (?, ?, ?, ?)
+                    INSERT INTO Sucursales (NombreSucursal, Direccion, Municipio)
+                    VALUES (?, ?, ?)
                 """
-                cursor.execute(query, (NombreSucursal, Direccion, Municipio, Departamento))
+                cursor.execute(query, (NombreSucursal, Direccion, MunicipioId))
                 conexion.commit()  # Confirmar la transacción
                 cursor.close()
 
@@ -65,6 +91,5 @@ class RegistrarSucursal(QMainWindow):  # Hereda de QMainWindow
     def limpiarCampos(self):
         # Limpiar los campos después de registrar
         self.txtNombreSucursal.clear()
-        self.txtDireccionSucursal.clear()  # Asegúrate de que este sea el nombre correcto del campo
-        self.txtMunicipioSucursal.clear()
-        self.txtDepartamentoSucursal.clear()  # Asegúrate de que este sea el nombre correcto del campo
+        self.txtDireccionSucursal.clear()
+        self.comboBoxMunicipios.setCurrentIndex(-1)

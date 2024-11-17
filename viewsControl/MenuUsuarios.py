@@ -1,5 +1,8 @@
+import subprocess
+import webbrowser
+import os
 from PyQt6 import uic
-from PyQt6.QtWidgets import QMessageBox, QDialog, QMainWindow
+from PyQt6.QtWidgets import QMessageBox, QMainWindow
 from PyQt6.QtCore import QPropertyAnimation
 from conexion import Conexion
 from viewsControl.SolicitarPrestamo import SolicitarPrestamo
@@ -10,9 +13,9 @@ class MenuUsuarios(QMainWindow):
     def __init__(self, login_window, Usuario):
         super().__init__()
         self.menuUsuarios = uic.loadUi("views/MenuUsuarios.ui", self)
-        self.message = uic.loadUi("views/messageBox.ui")
         self.login_window = login_window
         self.Usuario = Usuario  # Guardar el id del empleado
+        self.server_process = None  # Variable para guardar el proceso del servidor
         self.iniGui()
         self.show()
 
@@ -21,15 +24,41 @@ class MenuUsuarios(QMainWindow):
         self.menuUsuarios.btnPrestamos.clicked.connect(self.abriVentanaSolicitarPrestamo)
         self.menuUsuarios.btnVerSolicitudes.clicked.connect(self.abriVentanaSolicitudes)
         self.menuUsuarios.btnCuotas.clicked.connect(self.abrirVentanaInformeCuotas)
+        self.menuUsuarios.btnAyudas.clicked.connect(self.abrirMenuAyuda)
+
+    def abrirMenuAyuda(self):   
+        """Abrir la página de ayuda en un servidor web local."""
+        ayuda_path = os.path.abspath("config/helps/site")  # Ruta a los archivos generados por MkDocs
+        if os.path.exists(ayuda_path):
+            try:
+                # Iniciar un servidor web local en el puerto 8000
+                self.server_process = subprocess.Popen(
+                    ["python", "-m", "http.server", "8000", "--directory", ayuda_path]
+                )
+                # Abrir el navegador predeterminado con la URL
+                webbrowser.open("http://localhost:8000")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"No se pudo iniciar el servidor de ayuda: {e}")
+        else:
+            QMessageBox.warning(self, "Ayuda", "El archivo de ayuda no se encontró.")
 
     def logout(self):
+        self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
         if self.Usuario:  # Solo registrar la salida si hay un id_usuario
             self.registrar_auditoria_salida(self.Usuario)
-        self.mensajeConfirmacion("Salir", "¿Estás seguro de que quieres cerrar sesión?")
+
+        self.detenerServidorWeb()
+
+    def detenerServidorWeb(self):
+        """Detener el servidor web local si está en ejecución."""
+        if self.server_process:
+            self.server_process.terminate()  # Finalizar el proceso del servidor
+            self.server_process = None
+            print("Servidor web detenido.")
 
     def abriVentanaSolicitarPrestamo(self):
         self.menuUsuarios.close()
-        self.ventanaSolicitarPrestamo = SolicitarPrestamo(self, self.Usuario)  # Pasar el id al abrir la ventana
+        self.ventanaSolicitarPrestamo = SolicitarPrestamo(self, self.Usuario)
         self.ventanaSolicitarPrestamo.show()
 
     def abriVentanaSolicitudes(self):
@@ -39,17 +68,20 @@ class MenuUsuarios(QMainWindow):
 
     def abrirVentanaInformeCuotas(self):
         self.menuUsuarios.close()
-        self.ventanaInformeCuotas = InformeCuotas(self,self.Usuario)
+        self.ventanaInformeCuotas = InformeCuotas(self, self.Usuario)
         self.ventanaInformeCuotas.show()
 
     def mensajeConfirmacion(self, title, message):
-        self.message = QDialog()
-        self.message = uic.loadUi("views/messageBox.ui")
-        self.message.lblTitulo.setText(title)
-        self.message.lblMensaje.setText(message)
-        self.message.btnSi.clicked.connect(lambda: self.handleResponse(True))
-        self.message.btnNo.clicked.connect(lambda: self.handleResponse(False))
-        self.message.exec()
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle(title)
+        msg_box.setText(message)
+        msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        result = msg_box.exec()
+
+        if result == QMessageBox.StandardButton.Yes:
+            self.handleResponse(True)
+        else:
+            self.handleResponse(False)
 
     def handleResponse(self, accepted):
         if accepted:
@@ -59,7 +91,6 @@ class MenuUsuarios(QMainWindow):
             self.animation.setEndValue(0)
             self.animation.finished.connect(self.close_and_show_login)
             self.animation.start()
-        self.message.close()
 
     def close_and_show_login(self):
         self.menuUsuarios.close()

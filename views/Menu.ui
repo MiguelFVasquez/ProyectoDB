@@ -573,6 +573,31 @@ border-radius: 8px;  </string>
  por usuario</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnAyudas">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>180</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(202, 253, 255);
+border: 2px solid rgb(0, 0, 0);  
+border-radius: 8px;  </string>
+    </property>
+    <property name="text">
+     <string>Ayudas</string>
+    </property>
+   </widget>
   </widget>
   <action name="actionEmpleados">
    <property name="text">

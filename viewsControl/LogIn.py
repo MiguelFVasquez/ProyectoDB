@@ -4,7 +4,6 @@ from viewsControl.Menu import Menu
 from viewsControl.MenuUsuarios import MenuUsuarios
 from viewsControl.MenuTesoreria import MenuTesoreria 
 from conexion import Conexion
-from datetime import datetime
 
 class LogIn:
     def __init__(self):

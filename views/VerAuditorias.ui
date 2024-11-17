@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>771</width>
-    <height>439</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>160</y>
       <width>671</width>
       <height>221</height>
      </rect>
@@ -474,7 +474,7 @@ background-color: rgba(0, 0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>90</y>
+      <y>120</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -496,8 +496,8 @@ border-radius:8px
    <widget class="QPushButton" name="btnRegresar">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>390</y>
+      <x>650</x>
+      <y>420</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -514,6 +514,91 @@ border-radius:8px
     </property>
     <property name="text">
      <string>Regresar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblEntidades">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgba(0, 0, 0, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>Buscar por cédula</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtCedula">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>110</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+border: 2px solid rgb(0,0,0);
+border-radius: 4px
+</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="placeholderText">
+     <string>Cedula</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBuscar">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>110</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(37, 99, 175);
+border: 2px solid rgb(0,0,0);
+border-radius:8px
+</string>
+    </property>
+    <property name="text">
+     <string>Buscar</string>
     </property>
    </widget>
   </widget>
